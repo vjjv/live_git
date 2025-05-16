@@ -2472,11 +2472,13 @@ const remoteMediaAssetLoaderFactory = Injectable("remoteMediaAssetLoader", [defa
 //# sourceMappingURL=remoteMediaAssetLoaderFactory.js.map
 ;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/EmptyError.js
 
-var EmptyError = createErrorClass(function (_super) { return function EmptyErrorImpl() {
-    _super(this);
-    this.name = 'EmptyError';
-    this.message = 'no elements in sequence';
-}; });
+var EmptyError = createErrorClass(function (_super) {
+    return function EmptyErrorImpl() {
+        _super(this);
+        this.name = 'EmptyError';
+        this.message = 'no elements in sequence';
+    };
+});
 //# sourceMappingURL=EmptyError.js.map
 ;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/firstValueFrom.js
 
@@ -7184,13 +7186,13 @@ function memoize_memoize(delegate) {
 }
 //# sourceMappingURL=memoize.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/environment.js
-/* harmony default export */ const environment = ({ PACKAGE_VERSION: "1.1.0" });
+/* harmony default export */ const environment = ({ PACKAGE_VERSION: "1.5.0" });
 //# sourceMappingURL=environment.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lensCoreWasmVersions.js
 /* harmony default export */ const lensCoreWasmVersions = ({
-    version: "290",
-    buildNumber: "458",
-    baseUrl: "https://cf-st.sc-cdn.net/d/eQXoian2N4dHEfwVBdANc?go=IgsKCTIBBEgBUFxgAQ%3D%3D&uc=92",
+    version: "309",
+    buildNumber: "586",
+    baseUrl: "https://cf-st.sc-cdn.net/d/r38Sk7x9s1MK7V7P6U2SZ?go=IgsKCTIBBEgBUFxgAQ%3D%3D&uc=92",
 });
 //# sourceMappingURL=lensCoreWasmVersions.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/platform/platformInfo.js
@@ -7319,7 +7321,7 @@ function normalizeUserAgentData(userAgentData) {
         platform: parseOSName(userAgentData.platform),
     };
 }
-const getPlatformInfo = memoize_memoize(function getPlatformIno() {
+const getPlatformInfo = memoize_memoize(function getPlatformInfo() {
     var _a, _b, _c;
     const userAgent = navigator.userAgent;
     const userAgentData = isNavigatorUAData(navigator.userAgentData)
@@ -18845,6 +18847,16 @@ class RemoteConfiguration {
     getInitializationConfig() {
         return this.initializationConfig;
     }
+    getGpuIndexConfig() {
+        const lensClusterConfigName = "LENS_FEATURE_GPU_INDEX";
+        return this.get(lensClusterConfigName).pipe(map((configResults) => {
+            var _a, _b;
+            if (configResults.length === 0) {
+                throw new Error(`Cannot find '${lensClusterConfigName}' config.`);
+            }
+            return (_b = (_a = configResults[0].value) === null || _a === void 0 ? void 0 : _a.intValue) !== null && _b !== void 0 ? _b : -1;
+        }), shareReplay(1));
+    }
     getNamespace(namespace) {
         return this.configById.pipe(map((configs) => {
             const namespaceConfigs = Array.from(configs.values())
@@ -18982,6 +18994,7 @@ const promisifiableMethods = {
     replaceLenses: null,
     setAudioParameters: null,
     setDeviceClass: null,
+    setGpuIndex: null,
     setFPSLimit: null,
     setInputTransform: null,
     setOnFrameProcessedCallback: null,
@@ -25542,42 +25555,38 @@ const sessionStateFactory = Injectable("sessionState", () => createSessionState(
 
 
 
+
+const LensKeyboard_logger = getLogger("LensKeyboard");
 class LensKeyboard {
     constructor(lensState) {
         this.lensState = lensState;
         this.active = false;
-        this.element = document.createElement("textarea");
-        this.element.addEventListener("keypress", (event) => {
-            if (event.code === "Enter" && !event.shiftKey) {
-                event.preventDefault();
-                this.handleReply(this.element.value);
-            }
-        });
+        this.text = undefined;
+        this.reply = () => { };
+        this.onElementKeyPress = this.onElementKeyPress.bind(this);
         this.events = new TypedEventTarget();
-        this.handleReply = () => { };
+        this.element = document.createElement("textarea");
+        this.element.addEventListener("keypress", this.onElementKeyPress);
         this.uriHandler = {
-            uri: "app://textInput/requestKeyboard",
-            handleRequest: (_request, reply) => {
-                this.element.autofocus = true;
-                this.handleReply = (text) => {
-                    const opt = {
-                        text: text,
-                        start: text.length,
-                        end: text.length,
-                        done: true,
-                        shouldNotify: true,
-                    };
-                    const output = new TextEncoder().encode(JSON.stringify(opt));
-                    reply({
-                        code: 200,
-                        description: "",
-                        contentType: "application/json",
-                        data: output,
-                    });
-                };
-                this.active = true;
-                this.updateStatus();
-                this.element.focus();
+            uri: "app://textInput/",
+            handleRequest: (request, reply) => {
+                if (request.uri === "app://textInput/requestKeyboard") {
+                    const data = JSON.parse(new TextDecoder().decode(request.data));
+                    this.element.value = data.text;
+                    this.text = data.text;
+                    this.reply = reply;
+                    this.active = true;
+                    this.notifyClient();
+                    this.element.focus();
+                }
+                else if (request.uri === "app://textInput/dismissKeyboard") {
+                    this.active = false;
+                    this.sendReply({ keyboardOpen: false });
+                    this.notifyClient();
+                }
+                else {
+                    LensKeyboard_logger.error(new Error(`Unhandled lens keyboard request '${request.uri}'.`));
+                }
             },
         };
         lensState.events.pipe(forActions("turnedOff")).subscribe(() => {
@@ -25585,18 +25594,25 @@ class LensKeyboard {
         });
     }
     dismiss() {
-        if (this.active) {
-            this.active = false;
-            this.element.value = "";
-            this.updateStatus();
-        }
+        this.active = false;
+        this.element.value = "";
+        this.text = "";
+        this.sendReply({ keyboardOpen: false });
+        this.notifyClient();
     }
     getElement() {
         return this.element;
     }
     sendInputToLens(text) {
         this.element.value = text;
-        this.handleReply(text);
+        this.text = text;
+        this.sendReply({
+            text: text,
+            start: text.length,
+            end: text.length,
+            done: true,
+            shouldNotify: true,
+        });
     }
     addEventListener(type, callback, options) {
         this.events.addEventListener(type, callback, options);
@@ -25608,20 +25624,39 @@ class LensKeyboard {
         return {
             addEventListener: this.addEventListener.bind(this),
             removeEventListener: this.removeEventListener.bind(this),
-            getElement: this.getElement.bind(this),
             sendInputToLens: this.sendInputToLens.bind(this),
             dismiss: this.dismiss.bind(this),
+            getElement: this.getElement.bind(this),
         };
     }
-    updateStatus() {
+    destroy() {
+        this.element.removeEventListener("keypress", this.onElementKeyPress);
+    }
+    sendReply(data) {
+        this.reply({
+            code: 200,
+            description: "",
+            contentType: "application/json",
+            data: new TextEncoder().encode(JSON.stringify(data)),
+        });
+    }
+    notifyClient() {
+        var _a;
         const state = this.lensState.getState();
         if (isState(state, "noLensApplied"))
             return;
         this.events.dispatchEvent(new TypedCustomEvent("active", {
             element: this.element,
             active: this.active,
+            text: (_a = this.text) !== null && _a !== void 0 ? _a : "",
             lens: state.data,
         }));
+    }
+    onElementKeyPress(event) {
+        if (event.code === "Enter" && !event.shiftKey) {
+            event.preventDefault();
+            this.sendInputToLens(this.element.value);
+        }
     }
 }
 const lensKeyboardFactory = Injectable("lensKeyboard", [lensStateFactory.token], (lensState) => new LensKeyboard(lensState));
@@ -25693,12 +25728,13 @@ let CameraKitSession_CameraKitSession = (() => {
     let _setFPSLimit_decorators;
     let _destroy_decorators;
     return _a = class CameraKitSession {
-            constructor(keyboard, lensCore, sessionState, lensState, logEntries, pageVisibility) {
-                this.keyboard = (__runInitializers(this, _instanceExtraInitializers), keyboard);
+            constructor(innerKeyboard, lensCore, sessionState, lensState, logEntries, pageVisibility) {
+                this.innerKeyboard = (__runInitializers(this, _instanceExtraInitializers), innerKeyboard);
                 this.lensCore = lensCore;
                 this.sessionState = sessionState;
                 this.lensState = lensState;
                 this.events = new TypedEventTarget();
+                this.keyboard = innerKeyboard.toPublicInterface();
                 const outputs = this.lensCore.getOutputCanvases();
                 this.output = {
                     live: outputs[this.lensCore.CanvasType.Preview.value],
@@ -25833,6 +25869,7 @@ let CameraKitSession_CameraKitSession = (() => {
                     yield this.safelyDetachSource();
                     this.removePageVisibilityHandlers();
                     this.sessionState.dispatch("destroy", undefined);
+                    this.innerKeyboard.destroy();
                 });
             }
             renderTargetToCanvasType(target) {
@@ -26540,22 +26577,23 @@ function createUriRequestProcessor({ uri, lensState, sessionState, createLensReq
 const requestValidationErrorName = "RequestValidationError";
 const requestValidationError = namedError(requestValidationErrorName);
 function validateRequest(request, specs) {
-    var _a, _b, _c;
+    var _a;
+    const url = new URL(request.uri);
     for (const spec of specs) {
-        const url = `${spec.tlsRequired ? "https://" : "http://"}${spec.host}`;
-        if (!request.uri.startsWith(url))
+        if (url.host !== spec.host || url.protocol !== (spec.tlsRequired ? "https:" : "http:")) {
             continue;
-        const path = ((_a = request.uri.split(url)[1]) !== null && _a !== void 0 ? _a : "").replace(/^\//, "").replace(/\/$/, "");
+        }
+        const path = url.pathname.replace(/^\/|\/$/g, "");
         for (const endpoint of spec.endpoints) {
-            const endpointPath = endpoint.path.replace(/^\//, "").replace(/\/$/, "");
+            const endpointPath = endpoint.path.replace(/^\/|\/$/g, "");
             if (!path.startsWith(endpointPath))
                 continue;
-            const method = (_b = RemoteEndpoint_HttpRequestMethod[request.method]) !== null && _b !== void 0 ? _b : RemoteEndpoint_HttpRequestMethod.UNRECOGNIZED;
+            const method = (_a = RemoteEndpoint_HttpRequestMethod[request.method]) !== null && _a !== void 0 ? _a : RemoteEndpoint_HttpRequestMethod.UNRECOGNIZED;
             if (!endpoint.methods.includes(method))
                 continue;
-            validatePath((_c = path.split(endpointPath)[1]) !== null && _c !== void 0 ? _c : "", endpoint.parameters);
+            validatePath(path.split(endpointPath)[1], endpoint.parameters);
             validateHeaders(request.metadata, endpoint.parameters);
-            validateQuery(request.uri, endpoint.parameters);
+            validateQuery(url.searchParams, endpoint.parameters);
             return;
         }
     }
@@ -26580,7 +26618,12 @@ function validatePath(path, parameters) {
         }
         else if (param.optional) {
             if (paramNameComponent === param.name) {
-                paramIndex += 2;
+                if (paramValueComponent !== undefined) {
+                    paramIndex += 2;
+                }
+                else {
+                    paramIndex += 1;
+                }
             }
         }
         else {
@@ -26610,9 +26653,6 @@ function validateHeaders(headers, parameters) {
             }
         }
         else if (param.optional) {
-            if (headerValue != undefined && isEmptyString(headerValue)) {
-                throw requestValidationError(`Header '${param.name}' is present but empty. If provided, it should not be empty.`);
-            }
         }
         else {
             if (headerValue == undefined || isEmptyString(headerValue)) {
@@ -26621,9 +26661,7 @@ function validateHeaders(headers, parameters) {
         }
     }
 }
-function validateQuery(uri, parameters) {
-    const url = new URL(uri);
-    const queryParams = new URLSearchParams(url.search);
+function validateQuery(queryParams, parameters) {
     for (const param of parameters) {
         if (param.location !== RemoteParameter_ParameterLocation.QUERY)
             continue;
@@ -26635,10 +26673,6 @@ function validateQuery(uri, parameters) {
             }
         }
         else if (param.optional) {
-            if (paramValue != undefined && isEmptyString(paramValue)) {
-                throw requestValidationError(`Optional query parameter '${param.name}' is present but empty. ` +
-                    `If provided, it should not be empty.`);
-            }
         }
         else {
             if (paramValue == undefined || isEmptyString(paramValue)) {
@@ -26670,6 +26704,7 @@ const allowedResponseHeaders = [
     "Last-Modified",
     "Location",
 ];
+const requestHeadersToExclude = ["x-sc-lenses-remote-api-spec-id"];
 function createHttpUriHandler(lensState, sessionState, remoteApiSpecsClient, customLentFetchHandler) {
     let allowlistPromise = undefined;
     return createUriRequestProcessor({
@@ -26764,10 +26799,14 @@ function getErrorResponse(errorType, message) {
     };
 }
 function mapLensToFetchRequest({ uri, method, metadata, data }) {
+    const headers = new Headers(metadata);
+    for (const header of requestHeadersToExclude) {
+        headers.delete(header);
+    }
     return {
         url: uri,
         init: {
-            headers: metadata,
+            headers: Object.fromEntries(headers.entries()),
             body: method !== "GET" && method !== "HEAD" && method !== undefined ? data : undefined,
             method,
         },
@@ -28347,6 +28386,17 @@ const remoteApiServicesFactory = Injectable("remoteApiServices", () => {
     const remoteApiServices = [];
     return remoteApiServices;
 });
+function getFirstRequestHandler(services, remoteApiRequest, lens) {
+    for (const service of services) {
+        try {
+            return service.getRequestHandler(remoteApiRequest, lens);
+        }
+        catch (error) {
+            remoteApiUriHandler_logger.warn("Client's Remote API request handler factory threw an error.", error);
+        }
+    }
+    return undefined;
+}
 function createRemoteApiUriHandler(registeredServices, sessionState, lensState, lensRepository, metrics) {
     const registeredServiceMap = new Map();
     for (const service of registeredServices) {
@@ -28373,62 +28423,51 @@ function createRemoteApiUriHandler(registeredServices, sessionState, lensState, 
             const { route } = extractSchemeAndRoute(request.uri);
             const [specId, endpointIdWithQuery] = route.split("/").slice(2);
             const [endpointId] = endpointIdWithQuery.split("?");
-            if (!(state === null || state === void 0 ? void 0 : state.supportedSpecIds.has(specId)))
-                return;
-            if (!registeredServiceMap.has(specId))
-                return;
             const dimensions = { specId };
             const reportSingleCount = (name) => {
                 metrics.setOperationalMetrics(Count.count(joinMetricNames(["lens", "remote-api", name]), 1, dimensions));
             };
             reportSingleCount("requests");
+            if (!(state === null || state === void 0 ? void 0 : state.supportedSpecIds.has(specId)))
+                return;
             const remoteApiRequest = {
                 apiSpecId: specId,
                 body: request.data,
                 endpointId,
                 parameters: request.metadata,
             };
-            for (const service of (_a = registeredServiceMap.get(specId)) !== null && _a !== void 0 ? _a : []) {
-                let requestHandler = undefined;
-                try {
-                    requestHandler = service.getRequestHandler(remoteApiRequest, lens);
-                }
-                catch (error) {
-                    remoteApiUriHandler_logger.warn("Client's Remote API request handler factory threw an error.", error);
-                }
-                if (requestHandler) {
-                    reportSingleCount("handled-requests");
-                    let cancellationHandler = undefined;
+            let requestHandler = getFirstRequestHandler((_a = registeredServiceMap.get(specId)) !== null && _a !== void 0 ? _a : [], remoteApiRequest, lens);
+            if (!requestHandler)
+                return;
+            reportSingleCount("handled-requests");
+            let cancellationHandler = undefined;
+            try {
+                cancellationHandler = requestHandler((response) => {
+                    var _a;
+                    reportSingleCount("responses");
+                    const responseCode = (_a = statusToResponseCodeMap[response.status]) !== null && _a !== void 0 ? _a : ResponseCode.UNRECOGNIZED;
+                    const uriResponse = {
+                        code: uriResponseOkCode,
+                        description: "",
+                        contentType: apiBinaryContentType,
+                        data: response.body,
+                        metadata: Object.assign(Object.assign({}, response.metadata), { [apiResponseStatusHeader]: responseCodeToNumber(responseCode).toString() }),
+                    };
+                    reply(uriResponse);
+                });
+            }
+            catch (error) {
+                remoteApiUriHandler_logger.warn("Client's Remote API request handler threw an error.", error);
+            }
+            if (typeof cancellationHandler === "function") {
+                setCancellationHandler(() => {
                     try {
-                        cancellationHandler = requestHandler((response) => {
-                            var _a;
-                            reportSingleCount("responses");
-                            const responseCode = (_a = statusToResponseCodeMap[response.status]) !== null && _a !== void 0 ? _a : ResponseCode.UNRECOGNIZED;
-                            const uriResponse = {
-                                code: uriResponseOkCode,
-                                description: "",
-                                contentType: apiBinaryContentType,
-                                data: response.body,
-                                metadata: Object.assign(Object.assign({}, response.metadata), { [apiResponseStatusHeader]: responseCodeToNumber(responseCode).toString() }),
-                            };
-                            reply(uriResponse);
-                        });
+                        cancellationHandler();
                     }
                     catch (error) {
-                        remoteApiUriHandler_logger.warn("Client's Remote API request handler threw an error.", error);
+                        remoteApiUriHandler_logger.warn("Client's Remote API request cancellation handler threw an error.", error);
                     }
-                    if (typeof cancellationHandler === "function") {
-                        setCancellationHandler(() => {
-                            try {
-                                cancellationHandler();
-                            }
-                            catch (error) {
-                                remoteApiUriHandler_logger.warn("Client's Remote API request cancellation handler threw an error.", error);
-                            }
-                        });
-                    }
-                    break;
-                }
+                });
             }
         },
         processInternalError(error) {
@@ -29558,7 +29597,59 @@ const setPreloadedConfiguration = Injectable("setPreloadedConfiguration", [lensC
     });
 });
 //# sourceMappingURL=preloadConfiguration.js.map
+;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/geo/geoDataProvider.js
+
+
+function isGeoData(value) {
+    return typeguards_isRecord(value) && isWeatherData(value.weather);
+}
+function isWeatherData(value) {
+    return (typeguards_isRecord(value) &&
+        typeguards_isString(value.locationName) &&
+        isNumber(value.celsius) &&
+        isNumber(value.fahrenheit) &&
+        !isUndefined(value.hourlyForecasts) &&
+        isArrayOfType(isHourlyWeatherForecast, value.hourlyForecasts));
+}
+function isHourlyWeatherForecast(value) {
+    return (typeguards_isRecord(value) &&
+        isNumber(value.celsius) &&
+        isNumber(value.fahrenheit) &&
+        typeguards_isString(value.displayTime) &&
+        typeguards_isString(value.weatherCondition) &&
+        typeguards_isString(value.localizedWeatherCondition));
+}
+const geoDataProviderFactory = Injectable("geoDataProvider", () => {
+    return () => undefined;
+});
+//# sourceMappingURL=geoDataProvider.js.map
+;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/geo/registerGeoDataProvider.js
+
+
+
+
+
+const registerGeoDataProvider_logger = getLogger("registerGeoDataProvider");
+const registerGeoDataProvider = Injectable("registerGeoDataProvider", [lensCoreFactory.token, geoDataProviderFactory.token], (lensCore, getGeoData) => {
+    if (!lensCore.setGeoDataProvider) {
+        registerGeoDataProvider_logger.warn("setGeoDataProvider is not defined.");
+        return;
+    }
+    lensCore.setGeoDataProvider(() => {
+        const geoData = getGeoData();
+        if (geoData) {
+            if (!isGeoData(geoData)) {
+                throw new Error("Expected GeoData object.");
+            }
+            lensCore.provideGeoData({ geoData });
+        }
+    });
+});
+//# sourceMappingURL=registerGeoDataProvider.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/CameraKit.js
+
+
+
 
 
 
@@ -29587,11 +29678,12 @@ let CameraKit = (() => {
     let _createSession_decorators;
     let _destroy_decorators;
     return _a = class CameraKit {
-            constructor(lensRepository, lensCore, pageVisibility, container, allMetrics) {
+            constructor(lensRepository, lensCore, pageVisibility, container, remoteConfig, allMetrics) {
                 this.lensRepository = (__runInitializers(this, _instanceExtraInitializers), lensRepository);
                 this.lensCore = lensCore;
                 this.pageVisibility = pageVisibility;
                 this.container = container;
+                this.remoteConfig = remoteConfig;
                 this.metrics = new TypedEventTarget();
                 this.sessions = [];
                 this.lenses = { repository: this.lensRepository };
@@ -29617,6 +29709,16 @@ let CameraKit = (() => {
                         shouldUseWorker: !renderWhileTabHidden && config.shouldUseWorker,
                         exceptionHandler,
                     });
+                    if (this.lensCore.setGpuIndex) {
+                        try {
+                            yield this.lensCore.setGpuIndex({
+                                gpuIndex: yield firstValueFrom(this.remoteConfig.getGpuIndexConfig()),
+                            });
+                        }
+                        catch (cause) {
+                            CameraKit_logger.error(new Error("Cannot set GPU index.", { cause }));
+                        }
+                    }
                     if (config.fonts.length > 0) {
                         this.lensCore.setSystemFonts({
                             fonts: config.fonts,
@@ -29635,6 +29737,7 @@ let CameraKit = (() => {
                         .provides(cameraKitSessionFactory)
                         .run(registerLensAssetsProvider)
                         .run(registerLensClientInterfaceHandler)
+                        .run(registerGeoDataProvider)
                         .run(setPreloadedConfiguration)
                         .run(reportSessionScopedMetrics)
                         .run(registerUriHandlers);
@@ -29665,8 +29768,9 @@ const cameraKitFactory = Injectable("CameraKit", [
     metricsEventTargetFactory.token,
     lensCoreFactory.token,
     pageVisibilityFactory.token,
+    remoteConfigurationFactory.token,
     CONTAINER,
-], (lensRepository, metrics, lensCore, pageVisibility, container) => new CameraKit(lensRepository, lensCore, pageVisibility, container, metrics));
+], (lensRepository, metrics, lensCore, pageVisibility, remoteConfiguration, container) => new CameraKit(lensRepository, lensCore, pageVisibility, container, remoteConfiguration, metrics));
 //# sourceMappingURL=CameraKit.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/platform/assertPlatformSupported.js
 
@@ -30093,6 +30197,7 @@ const cameraKitLensSourceFactory = Injectable(lensSourcesFactory.token, [lensSou
 
 
 
+
 const bootstrapCameraKit_logger = getLogger("bootstrapCameraKit");
 const nonWrappableErrors = [
     "ConfigurationError",
@@ -30119,6 +30224,7 @@ function bootstrapCameraKit(configuration, provide) {
                 .provides(lensSourcesFactory)
                 .provides(remoteApiServicesFactory)
                 .provides(uriHandlersFactory)
+                .provides(geoDataProviderFactory)
                 .provides(externalMetricsSubjectFactory);
             const publicContainer = provide ? provide(defaultPublicContainer) : defaultPublicContainer;
             const telemetryContainer = Container.provides(publicContainer)
@@ -30174,12 +30280,13 @@ function createExtension() {
 
 
 
-function getExtensionRequestContext() {
+
+const getExtensionRequestContext = memoize_memoize(function getExtensionRequestContext() {
     return ExtensionRequestContext.encode({
         userAgent: getCameraKitUserAgent(),
         locale: getPlatformInfo().fullLocale,
     }).finish();
-}
+});
 const extensionRequestContext = getExtensionRequestContext();
 //# sourceMappingURL=extensionRequestContext.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/media-sources/FunctionSource.js
@@ -30297,6 +30404,7 @@ function createImageSource(image, options = {}) {
 }
 //# sourceMappingURL=ImageSource.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/index.js
+
 
 
 
