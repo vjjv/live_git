@@ -83,6 +83,14 @@ async function updateCamera(session) {
 
     await session.setSource(source);
 
+
+    //DEBUG PIXELATE
+    const resolutionMultiplier = window.devicePixelRatio;
+    const width = window.innerWidth * resolutionMultiplier;
+    const height = window.innerHeight * resolutionMultiplier;
+    source.setRenderSize(width, height);
+    //END DEBUG
+
     if (!isBackFacing) {
         source.setTransform(Transform2D.MirrorX);
     }
