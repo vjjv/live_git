@@ -1,20 +1,14 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 37:
-/***/ (function(module) {
-
-!function(e,t){if(true)module.exports=t();else { var n, r; }}(this,(function(){return e={418:function(e,t){!function(e,t){for(var r in t)e[r]=t[r]}(t,function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}return r.m=e,r.c=t,r.i=function(e){return e},r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:n})},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=1)}([function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(3),o=function(){function e(e,t){void 0===e&&(e={}),void 0===t&&(t={splitValues:!1});var r,o=this;this.headersMap={},e&&("undefined"!=typeof Headers&&e instanceof Headers?n.getHeaderKeys(e).forEach((function(r){n.getHeaderValues(e,r).forEach((function(e){t.splitValues?o.append(r,n.splitHeaderValue(e)):o.append(r,e)}))})):"object"==typeof(r=e)&&"object"==typeof r.headersMap&&"function"==typeof r.forEach?e.forEach((function(e,t){o.append(e,t)})):"undefined"!=typeof Map&&e instanceof Map?e.forEach((function(e,t){o.append(t,e)})):"string"==typeof e?this.appendFromString(e):"object"==typeof e&&Object.getOwnPropertyNames(e).forEach((function(t){var r=e[t];Array.isArray(r)?r.forEach((function(e){o.append(t,e)})):o.append(t,r)})))}return e.prototype.appendFromString=function(e){for(var t=e.split("\r\n"),r=0;r<t.length;r++){var n=t[r],o=n.indexOf(":");if(o>0){var s=n.substring(0,o).trim(),i=n.substring(o+1).trim();this.append(s,i)}}},e.prototype.delete=function(e,t){var r=n.normalizeName(e);if(void 0===t)delete this.headersMap[r];else{var o=this.headersMap[r];if(o){var s=o.indexOf(t);s>=0&&o.splice(s,1),0===o.length&&delete this.headersMap[r]}}},e.prototype.append=function(e,t){var r=this,o=n.normalizeName(e);Array.isArray(this.headersMap[o])||(this.headersMap[o]=[]),Array.isArray(t)?t.forEach((function(e){r.headersMap[o].push(n.normalizeValue(e))})):this.headersMap[o].push(n.normalizeValue(t))},e.prototype.set=function(e,t){var r=n.normalizeName(e);if(Array.isArray(t)){var o=[];t.forEach((function(e){o.push(n.normalizeValue(e))})),this.headersMap[r]=o}else this.headersMap[r]=[n.normalizeValue(t)]},e.prototype.has=function(e,t){var r=this.headersMap[n.normalizeName(e)];if(!Array.isArray(r))return!1;if(void 0!==t){var o=n.normalizeValue(t);return r.indexOf(o)>=0}return!0},e.prototype.get=function(e){var t=this.headersMap[n.normalizeName(e)];return void 0!==t?t.concat():[]},e.prototype.forEach=function(e){var t=this;Object.getOwnPropertyNames(this.headersMap).forEach((function(r){e(r,t.headersMap[r])}),this)},e.prototype.toHeaders=function(){if("undefined"!=typeof Headers){var e=new Headers;return this.forEach((function(t,r){r.forEach((function(r){e.append(t,r)}))})),e}throw new Error("Headers class is not defined")},e}();t.BrowserHeaders=o},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(0);t.BrowserHeaders=n.BrowserHeaders},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.iterateHeaders=function(e,t){for(var r=e[Symbol.iterator](),n=r.next();!n.done;)t(n.value[0]),n=r.next()},t.iterateHeadersKeys=function(e,t){for(var r=e.keys(),n=r.next();!n.done;)t(n.value),n=r.next()}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(2);t.normalizeName=function(e){if("string"!=typeof e&&(e=String(e)),/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(e))throw new TypeError("Invalid character in header field name");return e.toLowerCase()},t.normalizeValue=function(e){return"string"!=typeof e&&(e=String(e)),e},t.getHeaderValues=function(e,t){var r=e;if(r instanceof Headers&&r.getAll)return r.getAll(t);var n=r.get(t);return n&&"string"==typeof n?[n]:n},t.getHeaderKeys=function(e){var t=e,r={},o=[];return t.keys?n.iterateHeadersKeys(t,(function(e){r[e]||(r[e]=!0,o.push(e))})):t.forEach?t.forEach((function(e,t){r[t]||(r[t]=!0,o.push(t))})):n.iterateHeaders(t,(function(e){var t=e[0];r[t]||(r[t]=!0,o.push(t))})),o},t.splitHeaderValue=function(e){var t=[];return e.split(", ").forEach((function(e){e.split(",").forEach((function(e){t.push(e)}))})),t}}]))},617:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ChunkParser=t.ChunkType=t.encodeASCII=t.decodeASCII=void 0;var n,o=r(65);function s(e){return 9===(t=e)||10===t||13===t||e>=32&&e<=126;var t}function i(e){for(var t=0;t!==e.length;++t)if(!s(e[t]))throw new Error("Metadata is not valid (printable) ASCII");return String.fromCharCode.apply(String,Array.prototype.slice.call(e))}function a(e){return 128==(128&e.getUint8(0))}function u(e){return e.getUint32(1,!1)}function d(e,t,r){return e.byteLength-t>=r}function c(e,t,r){if(e.slice)return e.slice(t,r);var n=e.length;void 0!==r&&(n=r);for(var o=new Uint8Array(n-t),s=0,i=t;i<n;i++)o[s++]=e[i];return o}t.decodeASCII=i,t.encodeASCII=function(e){for(var t=new Uint8Array(e.length),r=0;r!==e.length;++r){var n=e.charCodeAt(r);if(!s(n))throw new Error("Metadata contains invalid ASCII");t[r]=n}return t},function(e){e[e.MESSAGE=1]="MESSAGE",e[e.TRAILERS=2]="TRAILERS"}(n=t.ChunkType||(t.ChunkType={}));var p=function(){function e(){this.buffer=null,this.position=0}return e.prototype.parse=function(e,t){if(0===e.length&&t)return[];var r,s=[];if(null==this.buffer)this.buffer=e,this.position=0;else if(this.position===this.buffer.byteLength)this.buffer=e,this.position=0;else{var p=this.buffer.byteLength-this.position,h=new Uint8Array(p+e.byteLength),f=c(this.buffer,this.position);h.set(f,0);var l=new Uint8Array(e);h.set(l,p),this.buffer=h,this.position=0}for(;;){if(!d(this.buffer,this.position,5))return s;var g=c(this.buffer,this.position,this.position+5),b=new DataView(g.buffer,g.byteOffset,g.byteLength),y=u(b);if(!d(this.buffer,this.position,5+y))return s;var v=c(this.buffer,this.position+5,this.position+5+y);if(this.position+=5+y,a(b))return s.push({chunkType:n.TRAILERS,trailers:(r=v,new o.Metadata(i(r)))}),s;s.push({chunkType:n.MESSAGE,data:v})}},e}();t.ChunkParser=p},8:function(e,t){"use strict";var r;Object.defineProperty(t,"__esModule",{value:!0}),t.httpStatusToCode=t.Code=void 0,function(e){e[e.OK=0]="OK",e[e.Canceled=1]="Canceled",e[e.Unknown=2]="Unknown",e[e.InvalidArgument=3]="InvalidArgument",e[e.DeadlineExceeded=4]="DeadlineExceeded",e[e.NotFound=5]="NotFound",e[e.AlreadyExists=6]="AlreadyExists",e[e.PermissionDenied=7]="PermissionDenied",e[e.ResourceExhausted=8]="ResourceExhausted",e[e.FailedPrecondition=9]="FailedPrecondition",e[e.Aborted=10]="Aborted",e[e.OutOfRange=11]="OutOfRange",e[e.Unimplemented=12]="Unimplemented",e[e.Internal=13]="Internal",e[e.Unavailable=14]="Unavailable",e[e.DataLoss=15]="DataLoss",e[e.Unauthenticated=16]="Unauthenticated"}(r=t.Code||(t.Code={})),t.httpStatusToCode=function(e){switch(e){case 0:return r.Internal;case 200:return r.OK;case 400:return r.InvalidArgument;case 401:return r.Unauthenticated;case 403:return r.PermissionDenied;case 404:return r.NotFound;case 409:return r.Aborted;case 412:return r.FailedPrecondition;case 429:return r.ResourceExhausted;case 499:return r.Canceled;case 500:return r.Unknown;case 501:return r.Unimplemented;case 503:return r.Unavailable;case 504:return r.DeadlineExceeded;default:return r.Unknown}}},934:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.client=void 0;var n=r(65),o=r(617),s=r(8),i=r(346),a=r(57),u=r(882);t.client=function(e,t){return new d(e,t)};var d=function(){function e(e,t){this.started=!1,this.sentFirstMessage=!1,this.completed=!1,this.closed=!1,this.finishedSending=!1,this.onHeadersCallbacks=[],this.onMessageCallbacks=[],this.onEndCallbacks=[],this.parser=new o.ChunkParser,this.methodDefinition=e,this.props=t,this.createTransport()}return e.prototype.createTransport=function(){var e=this.props.host+"/"+this.methodDefinition.service.serviceName+"/"+this.methodDefinition.methodName,t={methodDefinition:this.methodDefinition,debug:this.props.debug||!1,url:e,onHeaders:this.onTransportHeaders.bind(this),onChunk:this.onTransportChunk.bind(this),onEnd:this.onTransportEnd.bind(this)};this.props.transport?this.transport=this.props.transport(t):this.transport=a.makeDefaultTransport(t)},e.prototype.onTransportHeaders=function(e,t){if(this.props.debug&&i.debug("onHeaders",e,t),this.closed)this.props.debug&&i.debug("grpc.onHeaders received after request was closed - ignoring");else if(0===t);else{this.responseHeaders=e,this.props.debug&&i.debug("onHeaders.responseHeaders",JSON.stringify(this.responseHeaders,null,2));var r=c(e);this.props.debug&&i.debug("onHeaders.gRPCStatus",r);var n=r&&r>=0?r:s.httpStatusToCode(t);this.props.debug&&i.debug("onHeaders.code",n);var o=e.get("grpc-message")||[];if(this.props.debug&&i.debug("onHeaders.gRPCMessage",o),this.rawOnHeaders(e),n!==s.Code.OK){var a=this.decodeGRPCStatus(o[0]);this.rawOnError(n,a,e)}}},e.prototype.onTransportChunk=function(e){var t=this;if(this.closed)this.props.debug&&i.debug("grpc.onChunk received after request was closed - ignoring");else{var r=[];try{r=this.parser.parse(e)}catch(e){return this.props.debug&&i.debug("onChunk.parsing error",e,e.message),void this.rawOnError(s.Code.Internal,"parsing error: "+e.message)}r.forEach((function(e){if(e.chunkType===o.ChunkType.MESSAGE){var r=t.methodDefinition.responseType.deserializeBinary(e.data);t.rawOnMessage(r)}else e.chunkType===o.ChunkType.TRAILERS&&(t.responseHeaders?(t.responseTrailers=new n.Metadata(e.trailers),t.props.debug&&i.debug("onChunk.trailers",t.responseTrailers)):(t.responseHeaders=new n.Metadata(e.trailers),t.rawOnHeaders(t.responseHeaders)))}))}},e.prototype.onTransportEnd=function(){if(this.props.debug&&i.debug("grpc.onEnd"),this.closed)this.props.debug&&i.debug("grpc.onEnd received after request was closed - ignoring");else if(void 0!==this.responseTrailers){var e=c(this.responseTrailers);if(null!==e){var t=this.responseTrailers.get("grpc-message"),r=this.decodeGRPCStatus(t[0]);this.rawOnEnd(e,r,this.responseTrailers)}else this.rawOnError(s.Code.Internal,"Response closed without grpc-status (Trailers provided)")}else{if(void 0===this.responseHeaders)return void this.rawOnError(s.Code.Unknown,"Response closed without headers");var n=c(this.responseHeaders),o=this.responseHeaders.get("grpc-message");if(this.props.debug&&i.debug("grpc.headers only response ",n,o),null===n)return void this.rawOnEnd(s.Code.Unknown,"Response closed without grpc-status (Headers only)",this.responseHeaders);var a=this.decodeGRPCStatus(o[0]);this.rawOnEnd(n,a,this.responseHeaders)}},e.prototype.decodeGRPCStatus=function(e){if(!e)return"";try{return decodeURIComponent(e)}catch(t){return e}},e.prototype.rawOnEnd=function(e,t,r){var n=this;this.props.debug&&i.debug("rawOnEnd",e,t,r),this.completed||(this.completed=!0,this.onEndCallbacks.forEach((function(o){if(!n.closed)try{o(e,t,r)}catch(e){setTimeout((function(){throw e}),0)}})))},e.prototype.rawOnHeaders=function(e){this.props.debug&&i.debug("rawOnHeaders",e),this.completed||this.onHeadersCallbacks.forEach((function(t){try{t(e)}catch(e){setTimeout((function(){throw e}),0)}}))},e.prototype.rawOnError=function(e,t,r){var o=this;void 0===r&&(r=new n.Metadata),this.props.debug&&i.debug("rawOnError",e,t),this.completed||(this.completed=!0,this.onEndCallbacks.forEach((function(n){if(!o.closed)try{n(e,t,r)}catch(e){setTimeout((function(){throw e}),0)}})))},e.prototype.rawOnMessage=function(e){var t=this;this.props.debug&&i.debug("rawOnMessage",e.toObject()),this.completed||this.closed||this.onMessageCallbacks.forEach((function(r){if(!t.closed)try{r(e)}catch(e){setTimeout((function(){throw e}),0)}}))},e.prototype.onHeaders=function(e){this.onHeadersCallbacks.push(e)},e.prototype.onMessage=function(e){this.onMessageCallbacks.push(e)},e.prototype.onEnd=function(e){this.onEndCallbacks.push(e)},e.prototype.start=function(e){if(this.started)throw new Error("Client already started - cannot .start()");this.started=!0;var t=new n.Metadata(e||{});t.set("content-type","application/grpc-web+proto"),t.set("x-grpc-web","1"),this.transport.start(t)},e.prototype.send=function(e){if(!this.started)throw new Error("Client not started - .start() must be called before .send()");if(this.closed)throw new Error("Client already closed - cannot .send()");if(this.finishedSending)throw new Error("Client already finished sending - cannot .send()");if(!this.methodDefinition.requestStream&&this.sentFirstMessage)throw new Error("Message already sent for non-client-streaming method - cannot .send()");this.sentFirstMessage=!0;var t=u.frameRequest(e);this.transport.sendMessage(t)},e.prototype.finishSend=function(){if(!this.started)throw new Error("Client not started - .finishSend() must be called before .close()");if(this.closed)throw new Error("Client already closed - cannot .send()");if(this.finishedSending)throw new Error("Client already finished sending - cannot .finishSend()");this.finishedSending=!0,this.transport.finishSend()},e.prototype.close=function(){if(!this.started)throw new Error("Client not started - .start() must be called before .close()");if(this.closed)throw new Error("Client already closed - cannot .close()");this.closed=!0,this.props.debug&&i.debug("request.abort aborting request"),this.transport.cancel()},e}();function c(e){var t=e.get("grpc-status")||[];if(t.length>0)try{var r=t[0];return parseInt(r,10)}catch(e){return null}return null}},346:function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.debug=void 0,t.debug=function(){for(var e=[],t=0;t<arguments.length;t++)e[t]=arguments[t];console.debug?console.debug.apply(null,e):console.log.apply(null,e)}},607:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.grpc=void 0;var n,o=r(418),s=r(57),i=r(229),a=r(540),u=r(210),d=r(859),c=r(8),p=r(938),h=r(35),f=r(934);(n=t.grpc||(t.grpc={})).setDefaultTransport=s.setDefaultTransportFactory,n.CrossBrowserHttpTransport=d.CrossBrowserHttpTransport,n.FetchReadableStreamTransport=i.FetchReadableStreamTransport,n.XhrTransport=u.XhrTransport,n.WebsocketTransport=a.WebsocketTransport,n.Code=c.Code,n.Metadata=o.BrowserHeaders,n.client=function(e,t){return f.client(e,t)},n.invoke=p.invoke,n.unary=h.unary},938:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.invoke=void 0;var n=r(934);t.invoke=function(e,t){if(e.requestStream)throw new Error(".invoke cannot be used with client-streaming methods. Use .client instead.");var r=n.client(e,{host:t.host,transport:t.transport,debug:t.debug});return t.onHeaders&&r.onHeaders(t.onHeaders),t.onMessage&&r.onMessage(t.onMessage),t.onEnd&&r.onEnd(t.onEnd),r.start(t.metadata),r.send(t.request),r.finishSend(),{close:function(){r.close()}}}},65:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.Metadata=void 0;var n=r(418);Object.defineProperty(t,"Metadata",{enumerable:!0,get:function(){return n.BrowserHeaders}})},57:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.makeDefaultTransport=t.setDefaultTransportFactory=void 0;var n=r(859),o=function(e){return n.CrossBrowserHttpTransport({withCredentials:!1})(e)};t.setDefaultTransportFactory=function(e){o=e},t.makeDefaultTransport=function(e){return o(e)}},229:function(e,t,r){"use strict";var n=this&&this.__assign||function(){return(n=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var o in t=arguments[r])Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o]);return e}).apply(this,arguments)};Object.defineProperty(t,"__esModule",{value:!0}),t.detectFetchSupport=t.FetchReadableStreamTransport=void 0;var o=r(65),s=r(346);t.FetchReadableStreamTransport=function(e){return function(t){return function(e,t){return e.debug&&s.debug("fetchRequest",e),new i(e,t)}(t,e)}};var i=function(){function e(e,t){this.cancelled=!1,this.controller=self.AbortController&&new AbortController,this.options=e,this.init=t}return e.prototype.pump=function(e,t){var r=this;if(this.reader=e,this.cancelled)return this.options.debug&&s.debug("Fetch.pump.cancel at first pump"),void this.reader.cancel().catch((function(e){r.options.debug&&s.debug("Fetch.pump.reader.cancel exception",e)}));this.reader.read().then((function(e){if(e.done)return r.options.onEnd(),t;r.options.onChunk(e.value),r.pump(r.reader,t)})).catch((function(e){r.cancelled?r.options.debug&&s.debug("Fetch.catch - request cancelled"):(r.cancelled=!0,r.options.debug&&s.debug("Fetch.catch",e.message),r.options.onEnd(e))}))},e.prototype.send=function(e){var t=this;fetch(this.options.url,n(n({},this.init),{headers:this.metadata.toHeaders(),method:"POST",body:e,signal:this.controller&&this.controller.signal})).then((function(e){if(t.options.debug&&s.debug("Fetch.response",e),t.options.onHeaders(new o.Metadata(e.headers),e.status),!e.body)return e;t.pump(e.body.getReader(),e)})).catch((function(e){t.cancelled?t.options.debug&&s.debug("Fetch.catch - request cancelled"):(t.cancelled=!0,t.options.debug&&s.debug("Fetch.catch",e.message),t.options.onEnd(e))}))},e.prototype.sendMessage=function(e){this.send(e)},e.prototype.finishSend=function(){},e.prototype.start=function(e){this.metadata=e},e.prototype.cancel=function(){var e=this;this.cancelled?this.options.debug&&s.debug("Fetch.cancel already cancelled"):(this.cancelled=!0,this.controller?(this.options.debug&&s.debug("Fetch.cancel.controller.abort"),this.controller.abort()):this.options.debug&&s.debug("Fetch.cancel.missing abort controller"),this.reader?(this.options.debug&&s.debug("Fetch.cancel.reader.cancel"),this.reader.cancel().catch((function(t){e.options.debug&&s.debug("Fetch.cancel.reader.cancel exception",t)}))):this.options.debug&&s.debug("Fetch.cancel before reader"))},e}();t.detectFetchSupport=function(){return"undefined"!=typeof Response&&Response.prototype.hasOwnProperty("body")&&"function"==typeof Headers}},859:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.CrossBrowserHttpTransport=void 0;var n=r(229),o=r(210);t.CrossBrowserHttpTransport=function(e){if(n.detectFetchSupport()){var t={credentials:e.withCredentials?"include":"same-origin"};return n.FetchReadableStreamTransport(t)}return o.XhrTransport({withCredentials:e.withCredentials})}},210:function(e,t,r){"use strict";var n,o=this&&this.__extends||(n=function(e,t){return(n=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r])})(e,t)},function(e,t){function r(){this.constructor=e}n(e,t),e.prototype=null===t?Object.create(t):(r.prototype=t.prototype,new r)});Object.defineProperty(t,"__esModule",{value:!0}),t.stringToArrayBuffer=t.MozChunkedArrayBufferXHR=t.XHR=t.XhrTransport=void 0;var s=r(65),i=r(346),a=r(849);t.XhrTransport=function(e){return function(t){if(a.detectMozXHRSupport())return new d(t,e);if(a.detectXHROverrideMimeTypeSupport())return new u(t,e);throw new Error("This environment's XHR implementation cannot support binary transfer.")}};var u=function(){function e(e,t){this.options=e,this.init=t}return e.prototype.onProgressEvent=function(){this.options.debug&&i.debug("XHR.onProgressEvent.length: ",this.xhr.response.length);var e=this.xhr.response.substr(this.index);this.index=this.xhr.response.length;var t=p(e);this.options.onChunk(t)},e.prototype.onLoadEvent=function(){this.options.debug&&i.debug("XHR.onLoadEvent"),this.options.onEnd()},e.prototype.onStateChange=function(){this.options.debug&&i.debug("XHR.onStateChange",this.xhr.readyState),this.xhr.readyState===XMLHttpRequest.HEADERS_RECEIVED&&this.options.onHeaders(new s.Metadata(this.xhr.getAllResponseHeaders()),this.xhr.status)},e.prototype.sendMessage=function(e){this.xhr.send(e)},e.prototype.finishSend=function(){},e.prototype.start=function(e){var t=this;this.metadata=e;var r=new XMLHttpRequest;this.xhr=r,r.open("POST",this.options.url),this.configureXhr(),this.metadata.forEach((function(e,t){r.setRequestHeader(e,t.join(", "))})),r.withCredentials=Boolean(this.init.withCredentials),r.addEventListener("readystatechange",this.onStateChange.bind(this)),r.addEventListener("progress",this.onProgressEvent.bind(this)),r.addEventListener("loadend",this.onLoadEvent.bind(this)),r.addEventListener("error",(function(e){t.options.debug&&i.debug("XHR.error",e),t.options.onEnd(e.error)}))},e.prototype.configureXhr=function(){this.xhr.responseType="text",this.xhr.overrideMimeType("text/plain; charset=x-user-defined")},e.prototype.cancel=function(){this.options.debug&&i.debug("XHR.abort"),this.xhr.abort()},e}();t.XHR=u;var d=function(e){function t(){return null!==e&&e.apply(this,arguments)||this}return o(t,e),t.prototype.configureXhr=function(){this.options.debug&&i.debug("MozXHR.configureXhr: setting responseType to 'moz-chunked-arraybuffer'"),this.xhr.responseType="moz-chunked-arraybuffer"},t.prototype.onProgressEvent=function(){var e=this.xhr.response;this.options.debug&&i.debug("MozXHR.onProgressEvent: ",new Uint8Array(e)),this.options.onChunk(new Uint8Array(e))},t}(u);function c(e,t){var r=e.charCodeAt(t);if(r>=55296&&r<=56319){var n=e.charCodeAt(t+1);n>=56320&&n<=57343&&(r=65536+(r-55296<<10)+(n-56320))}return r}function p(e){for(var t=new Uint8Array(e.length),r=0,n=0;n<e.length;n++){var o=String.prototype.codePointAt?e.codePointAt(n):c(e,n);t[r++]=255&o}return t}t.MozChunkedArrayBufferXHR=d,t.stringToArrayBuffer=p},849:function(e,t){"use strict";var r;function n(){if(void 0!==r)return r;if(XMLHttpRequest){r=new XMLHttpRequest;try{r.open("GET","https://localhost")}catch(e){}}return r}function o(e){var t=n();if(!t)return!1;try{return t.responseType=e,t.responseType===e}catch(e){}return!1}Object.defineProperty(t,"__esModule",{value:!0}),t.detectXHROverrideMimeTypeSupport=t.detectMozXHRSupport=t.xhrSupportsResponseType=void 0,t.xhrSupportsResponseType=o,t.detectMozXHRSupport=function(){return"undefined"!=typeof XMLHttpRequest&&o("moz-chunked-arraybuffer")},t.detectXHROverrideMimeTypeSupport=function(){return"undefined"!=typeof XMLHttpRequest&&XMLHttpRequest.prototype.hasOwnProperty("overrideMimeType")}},540:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.WebsocketTransport=void 0;var n,o=r(346),s=r(617);!function(e){e[e.FINISH_SEND=1]="FINISH_SEND"}(n||(n={}));var i=new Uint8Array([1]);t.WebsocketTransport=function(){return function(e){return function(e){e.debug&&o.debug("websocketRequest",e);var t,r=function(e){if("https://"===e.substr(0,8))return"wss://"+e.substr(8);if("http://"===e.substr(0,7))return"ws://"+e.substr(7);throw new Error("Websocket transport constructed with non-https:// or http:// host.")}(e.url),a=[];function u(e){if(e===n.FINISH_SEND)t.send(i);else{var r=e,o=new Int8Array(r.byteLength+1);o.set(new Uint8Array([0])),o.set(r,1),t.send(o)}}return{sendMessage:function(e){t&&t.readyState!==t.CONNECTING?u(e):a.push(e)},finishSend:function(){t&&t.readyState!==t.CONNECTING?u(n.FINISH_SEND):a.push(n.FINISH_SEND)},start:function(n){(t=new WebSocket(r,["grpc-websockets"])).binaryType="arraybuffer",t.onopen=function(){var r;e.debug&&o.debug("websocketRequest.onopen"),t.send((r="",n.forEach((function(e,t){r+=e+": "+t.join(", ")+"\r\n"})),s.encodeASCII(r))),a.forEach((function(e){u(e)}))},t.onclose=function(t){e.debug&&o.debug("websocketRequest.onclose",t),e.onEnd()},t.onerror=function(t){e.debug&&o.debug("websocketRequest.onerror",t)},t.onmessage=function(t){e.onChunk(new Uint8Array(t.data))}},cancel:function(){e.debug&&o.debug("websocket.abort"),t.close()}}}(e)}}},35:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.unary=void 0;var n=r(65),o=r(934);t.unary=function(e,t){if(e.responseStream)throw new Error(".unary cannot be used with server-streaming methods. Use .invoke or .client instead.");if(e.requestStream)throw new Error(".unary cannot be used with client-streaming methods. Use .client instead.");var r=null,s=null,i=o.client(e,{host:t.host,transport:t.transport,debug:t.debug});return i.onHeaders((function(e){r=e})),i.onMessage((function(e){s=e})),i.onEnd((function(e,o,i){t.onEnd({status:e,statusMessage:o,headers:r||new n.Metadata,message:s,trailers:i})})),i.start(t.metadata),i.send(t.request),i.finishSend(),{close:function(){i.close()}}}},882:function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.frameRequest=void 0,t.frameRequest=function(e){var t=e.serializeBinary(),r=new ArrayBuffer(t.byteLength+5);return new DataView(r,1,4).setUint32(0,t.length,!1),new Uint8Array(r,5).set(t),new Uint8Array(r)}}},t={},function r(n){if(t[n])return t[n].exports;var o=t[n]={exports:{}};return e[n].call(o.exports,o,o.exports,r),o.exports}(607);var e,t}));
-
-/***/ }),
-
-/***/ 84:
+/***/ 18:
 /***/ (function(module) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
 		module.exports = factory();
-	else { var i, a; }
+	else // removed by dead control flow
+{ var i, a; }
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -378,6 +372,16 @@ exports.splitHeaderValue = splitHeaderValue;
 /******/ ]);
 });
 
+/***/ }),
+
+/***/ 553:
+/***/ (function(module) {
+
+!function(e,t){if(true)module.exports=t();else // removed by dead control flow
+{ var n, r; }}(this,(function(){return e={418:function(e,t){!function(e,t){for(var r in t)e[r]=t[r]}(t,function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}return r.m=e,r.c=t,r.i=function(e){return e},r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:n})},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=1)}([function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(3),o=function(){function e(e,t){void 0===e&&(e={}),void 0===t&&(t={splitValues:!1});var r,o=this;this.headersMap={},e&&("undefined"!=typeof Headers&&e instanceof Headers?n.getHeaderKeys(e).forEach((function(r){n.getHeaderValues(e,r).forEach((function(e){t.splitValues?o.append(r,n.splitHeaderValue(e)):o.append(r,e)}))})):"object"==typeof(r=e)&&"object"==typeof r.headersMap&&"function"==typeof r.forEach?e.forEach((function(e,t){o.append(e,t)})):"undefined"!=typeof Map&&e instanceof Map?e.forEach((function(e,t){o.append(t,e)})):"string"==typeof e?this.appendFromString(e):"object"==typeof e&&Object.getOwnPropertyNames(e).forEach((function(t){var r=e[t];Array.isArray(r)?r.forEach((function(e){o.append(t,e)})):o.append(t,r)})))}return e.prototype.appendFromString=function(e){for(var t=e.split("\r\n"),r=0;r<t.length;r++){var n=t[r],o=n.indexOf(":");if(o>0){var s=n.substring(0,o).trim(),i=n.substring(o+1).trim();this.append(s,i)}}},e.prototype.delete=function(e,t){var r=n.normalizeName(e);if(void 0===t)delete this.headersMap[r];else{var o=this.headersMap[r];if(o){var s=o.indexOf(t);s>=0&&o.splice(s,1),0===o.length&&delete this.headersMap[r]}}},e.prototype.append=function(e,t){var r=this,o=n.normalizeName(e);Array.isArray(this.headersMap[o])||(this.headersMap[o]=[]),Array.isArray(t)?t.forEach((function(e){r.headersMap[o].push(n.normalizeValue(e))})):this.headersMap[o].push(n.normalizeValue(t))},e.prototype.set=function(e,t){var r=n.normalizeName(e);if(Array.isArray(t)){var o=[];t.forEach((function(e){o.push(n.normalizeValue(e))})),this.headersMap[r]=o}else this.headersMap[r]=[n.normalizeValue(t)]},e.prototype.has=function(e,t){var r=this.headersMap[n.normalizeName(e)];if(!Array.isArray(r))return!1;if(void 0!==t){var o=n.normalizeValue(t);return r.indexOf(o)>=0}return!0},e.prototype.get=function(e){var t=this.headersMap[n.normalizeName(e)];return void 0!==t?t.concat():[]},e.prototype.forEach=function(e){var t=this;Object.getOwnPropertyNames(this.headersMap).forEach((function(r){e(r,t.headersMap[r])}),this)},e.prototype.toHeaders=function(){if("undefined"!=typeof Headers){var e=new Headers;return this.forEach((function(t,r){r.forEach((function(r){e.append(t,r)}))})),e}throw new Error("Headers class is not defined")},e}();t.BrowserHeaders=o},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(0);t.BrowserHeaders=n.BrowserHeaders},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.iterateHeaders=function(e,t){for(var r=e[Symbol.iterator](),n=r.next();!n.done;)t(n.value[0]),n=r.next()},t.iterateHeadersKeys=function(e,t){for(var r=e.keys(),n=r.next();!n.done;)t(n.value),n=r.next()}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(2);t.normalizeName=function(e){if("string"!=typeof e&&(e=String(e)),/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(e))throw new TypeError("Invalid character in header field name");return e.toLowerCase()},t.normalizeValue=function(e){return"string"!=typeof e&&(e=String(e)),e},t.getHeaderValues=function(e,t){var r=e;if(r instanceof Headers&&r.getAll)return r.getAll(t);var n=r.get(t);return n&&"string"==typeof n?[n]:n},t.getHeaderKeys=function(e){var t=e,r={},o=[];return t.keys?n.iterateHeadersKeys(t,(function(e){r[e]||(r[e]=!0,o.push(e))})):t.forEach?t.forEach((function(e,t){r[t]||(r[t]=!0,o.push(t))})):n.iterateHeaders(t,(function(e){var t=e[0];r[t]||(r[t]=!0,o.push(t))})),o},t.splitHeaderValue=function(e){var t=[];return e.split(", ").forEach((function(e){e.split(",").forEach((function(e){t.push(e)}))})),t}}]))},617:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ChunkParser=t.ChunkType=t.encodeASCII=t.decodeASCII=void 0;var n,o=r(65);function s(e){return 9===(t=e)||10===t||13===t||e>=32&&e<=126;// removed by dead control flow
+{ var t; }}function i(e){for(var t=0;t!==e.length;++t)if(!s(e[t]))throw new Error("Metadata is not valid (printable) ASCII");return String.fromCharCode.apply(String,Array.prototype.slice.call(e))}function a(e){return 128==(128&e.getUint8(0))}function u(e){return e.getUint32(1,!1)}function d(e,t,r){return e.byteLength-t>=r}function c(e,t,r){if(e.slice)return e.slice(t,r);var n=e.length;void 0!==r&&(n=r);for(var o=new Uint8Array(n-t),s=0,i=t;i<n;i++)o[s++]=e[i];return o}t.decodeASCII=i,t.encodeASCII=function(e){for(var t=new Uint8Array(e.length),r=0;r!==e.length;++r){var n=e.charCodeAt(r);if(!s(n))throw new Error("Metadata contains invalid ASCII");t[r]=n}return t},function(e){e[e.MESSAGE=1]="MESSAGE",e[e.TRAILERS=2]="TRAILERS"}(n=t.ChunkType||(t.ChunkType={}));var p=function(){function e(){this.buffer=null,this.position=0}return e.prototype.parse=function(e,t){if(0===e.length&&t)return[];var r,s=[];if(null==this.buffer)this.buffer=e,this.position=0;else if(this.position===this.buffer.byteLength)this.buffer=e,this.position=0;else{var p=this.buffer.byteLength-this.position,h=new Uint8Array(p+e.byteLength),f=c(this.buffer,this.position);h.set(f,0);var l=new Uint8Array(e);h.set(l,p),this.buffer=h,this.position=0}for(;;){if(!d(this.buffer,this.position,5))return s;var g=c(this.buffer,this.position,this.position+5),b=new DataView(g.buffer,g.byteOffset,g.byteLength),y=u(b);if(!d(this.buffer,this.position,5+y))return s;var v=c(this.buffer,this.position+5,this.position+5+y);if(this.position+=5+y,a(b))return s.push({chunkType:n.TRAILERS,trailers:(r=v,new o.Metadata(i(r)))}),s;s.push({chunkType:n.MESSAGE,data:v})}},e}();t.ChunkParser=p},8:function(e,t){"use strict";var r;Object.defineProperty(t,"__esModule",{value:!0}),t.httpStatusToCode=t.Code=void 0,function(e){e[e.OK=0]="OK",e[e.Canceled=1]="Canceled",e[e.Unknown=2]="Unknown",e[e.InvalidArgument=3]="InvalidArgument",e[e.DeadlineExceeded=4]="DeadlineExceeded",e[e.NotFound=5]="NotFound",e[e.AlreadyExists=6]="AlreadyExists",e[e.PermissionDenied=7]="PermissionDenied",e[e.ResourceExhausted=8]="ResourceExhausted",e[e.FailedPrecondition=9]="FailedPrecondition",e[e.Aborted=10]="Aborted",e[e.OutOfRange=11]="OutOfRange",e[e.Unimplemented=12]="Unimplemented",e[e.Internal=13]="Internal",e[e.Unavailable=14]="Unavailable",e[e.DataLoss=15]="DataLoss",e[e.Unauthenticated=16]="Unauthenticated"}(r=t.Code||(t.Code={})),t.httpStatusToCode=function(e){switch(e){case 0:return r.Internal;case 200:return r.OK;case 400:return r.InvalidArgument;case 401:return r.Unauthenticated;case 403:return r.PermissionDenied;case 404:return r.NotFound;case 409:return r.Aborted;case 412:return r.FailedPrecondition;case 429:return r.ResourceExhausted;case 499:return r.Canceled;case 500:return r.Unknown;case 501:return r.Unimplemented;case 503:return r.Unavailable;case 504:return r.DeadlineExceeded;default:return r.Unknown}}},934:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.client=void 0;var n=r(65),o=r(617),s=r(8),i=r(346),a=r(57),u=r(882);t.client=function(e,t){return new d(e,t)};var d=function(){function e(e,t){this.started=!1,this.sentFirstMessage=!1,this.completed=!1,this.closed=!1,this.finishedSending=!1,this.onHeadersCallbacks=[],this.onMessageCallbacks=[],this.onEndCallbacks=[],this.parser=new o.ChunkParser,this.methodDefinition=e,this.props=t,this.createTransport()}return e.prototype.createTransport=function(){var e=this.props.host+"/"+this.methodDefinition.service.serviceName+"/"+this.methodDefinition.methodName,t={methodDefinition:this.methodDefinition,debug:this.props.debug||!1,url:e,onHeaders:this.onTransportHeaders.bind(this),onChunk:this.onTransportChunk.bind(this),onEnd:this.onTransportEnd.bind(this)};this.props.transport?this.transport=this.props.transport(t):this.transport=a.makeDefaultTransport(t)},e.prototype.onTransportHeaders=function(e,t){if(this.props.debug&&i.debug("onHeaders",e,t),this.closed)this.props.debug&&i.debug("grpc.onHeaders received after request was closed - ignoring");else if(0===t);else{this.responseHeaders=e,this.props.debug&&i.debug("onHeaders.responseHeaders",JSON.stringify(this.responseHeaders,null,2));var r=c(e);this.props.debug&&i.debug("onHeaders.gRPCStatus",r);var n=r&&r>=0?r:s.httpStatusToCode(t);this.props.debug&&i.debug("onHeaders.code",n);var o=e.get("grpc-message")||[];if(this.props.debug&&i.debug("onHeaders.gRPCMessage",o),this.rawOnHeaders(e),n!==s.Code.OK){var a=this.decodeGRPCStatus(o[0]);this.rawOnError(n,a,e)}}},e.prototype.onTransportChunk=function(e){var t=this;if(this.closed)this.props.debug&&i.debug("grpc.onChunk received after request was closed - ignoring");else{var r=[];try{r=this.parser.parse(e)}catch(e){return this.props.debug&&i.debug("onChunk.parsing error",e,e.message),void this.rawOnError(s.Code.Internal,"parsing error: "+e.message)}r.forEach((function(e){if(e.chunkType===o.ChunkType.MESSAGE){var r=t.methodDefinition.responseType.deserializeBinary(e.data);t.rawOnMessage(r)}else e.chunkType===o.ChunkType.TRAILERS&&(t.responseHeaders?(t.responseTrailers=new n.Metadata(e.trailers),t.props.debug&&i.debug("onChunk.trailers",t.responseTrailers)):(t.responseHeaders=new n.Metadata(e.trailers),t.rawOnHeaders(t.responseHeaders)))}))}},e.prototype.onTransportEnd=function(){if(this.props.debug&&i.debug("grpc.onEnd"),this.closed)this.props.debug&&i.debug("grpc.onEnd received after request was closed - ignoring");else if(void 0!==this.responseTrailers){var e=c(this.responseTrailers);if(null!==e){var t=this.responseTrailers.get("grpc-message"),r=this.decodeGRPCStatus(t[0]);this.rawOnEnd(e,r,this.responseTrailers)}else this.rawOnError(s.Code.Internal,"Response closed without grpc-status (Trailers provided)")}else{if(void 0===this.responseHeaders)return void this.rawOnError(s.Code.Unknown,"Response closed without headers");var n=c(this.responseHeaders),o=this.responseHeaders.get("grpc-message");if(this.props.debug&&i.debug("grpc.headers only response ",n,o),null===n)return void this.rawOnEnd(s.Code.Unknown,"Response closed without grpc-status (Headers only)",this.responseHeaders);var a=this.decodeGRPCStatus(o[0]);this.rawOnEnd(n,a,this.responseHeaders)}},e.prototype.decodeGRPCStatus=function(e){if(!e)return"";try{return decodeURIComponent(e)}catch(t){return e}},e.prototype.rawOnEnd=function(e,t,r){var n=this;this.props.debug&&i.debug("rawOnEnd",e,t,r),this.completed||(this.completed=!0,this.onEndCallbacks.forEach((function(o){if(!n.closed)try{o(e,t,r)}catch(e){setTimeout((function(){throw e}),0)}})))},e.prototype.rawOnHeaders=function(e){this.props.debug&&i.debug("rawOnHeaders",e),this.completed||this.onHeadersCallbacks.forEach((function(t){try{t(e)}catch(e){setTimeout((function(){throw e}),0)}}))},e.prototype.rawOnError=function(e,t,r){var o=this;void 0===r&&(r=new n.Metadata),this.props.debug&&i.debug("rawOnError",e,t),this.completed||(this.completed=!0,this.onEndCallbacks.forEach((function(n){if(!o.closed)try{n(e,t,r)}catch(e){setTimeout((function(){throw e}),0)}})))},e.prototype.rawOnMessage=function(e){var t=this;this.props.debug&&i.debug("rawOnMessage",e.toObject()),this.completed||this.closed||this.onMessageCallbacks.forEach((function(r){if(!t.closed)try{r(e)}catch(e){setTimeout((function(){throw e}),0)}}))},e.prototype.onHeaders=function(e){this.onHeadersCallbacks.push(e)},e.prototype.onMessage=function(e){this.onMessageCallbacks.push(e)},e.prototype.onEnd=function(e){this.onEndCallbacks.push(e)},e.prototype.start=function(e){if(this.started)throw new Error("Client already started - cannot .start()");this.started=!0;var t=new n.Metadata(e||{});t.set("content-type","application/grpc-web+proto"),t.set("x-grpc-web","1"),this.transport.start(t)},e.prototype.send=function(e){if(!this.started)throw new Error("Client not started - .start() must be called before .send()");if(this.closed)throw new Error("Client already closed - cannot .send()");if(this.finishedSending)throw new Error("Client already finished sending - cannot .send()");if(!this.methodDefinition.requestStream&&this.sentFirstMessage)throw new Error("Message already sent for non-client-streaming method - cannot .send()");this.sentFirstMessage=!0;var t=u.frameRequest(e);this.transport.sendMessage(t)},e.prototype.finishSend=function(){if(!this.started)throw new Error("Client not started - .finishSend() must be called before .close()");if(this.closed)throw new Error("Client already closed - cannot .send()");if(this.finishedSending)throw new Error("Client already finished sending - cannot .finishSend()");this.finishedSending=!0,this.transport.finishSend()},e.prototype.close=function(){if(!this.started)throw new Error("Client not started - .start() must be called before .close()");if(this.closed)throw new Error("Client already closed - cannot .close()");this.closed=!0,this.props.debug&&i.debug("request.abort aborting request"),this.transport.cancel()},e}();function c(e){var t=e.get("grpc-status")||[];if(t.length>0)try{var r=t[0];return parseInt(r,10)}catch(e){return null}return null}},346:function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.debug=void 0,t.debug=function(){for(var e=[],t=0;t<arguments.length;t++)e[t]=arguments[t];console.debug?console.debug.apply(null,e):console.log.apply(null,e)}},607:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.grpc=void 0;var n,o=r(418),s=r(57),i=r(229),a=r(540),u=r(210),d=r(859),c=r(8),p=r(938),h=r(35),f=r(934);(n=t.grpc||(t.grpc={})).setDefaultTransport=s.setDefaultTransportFactory,n.CrossBrowserHttpTransport=d.CrossBrowserHttpTransport,n.FetchReadableStreamTransport=i.FetchReadableStreamTransport,n.XhrTransport=u.XhrTransport,n.WebsocketTransport=a.WebsocketTransport,n.Code=c.Code,n.Metadata=o.BrowserHeaders,n.client=function(e,t){return f.client(e,t)},n.invoke=p.invoke,n.unary=h.unary},938:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.invoke=void 0;var n=r(934);t.invoke=function(e,t){if(e.requestStream)throw new Error(".invoke cannot be used with client-streaming methods. Use .client instead.");var r=n.client(e,{host:t.host,transport:t.transport,debug:t.debug});return t.onHeaders&&r.onHeaders(t.onHeaders),t.onMessage&&r.onMessage(t.onMessage),t.onEnd&&r.onEnd(t.onEnd),r.start(t.metadata),r.send(t.request),r.finishSend(),{close:function(){r.close()}}}},65:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.Metadata=void 0;var n=r(418);Object.defineProperty(t,"Metadata",{enumerable:!0,get:function(){return n.BrowserHeaders}})},57:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.makeDefaultTransport=t.setDefaultTransportFactory=void 0;var n=r(859),o=function(e){return n.CrossBrowserHttpTransport({withCredentials:!1})(e)};t.setDefaultTransportFactory=function(e){o=e},t.makeDefaultTransport=function(e){return o(e)}},229:function(e,t,r){"use strict";var n=this&&this.__assign||function(){return(n=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var o in t=arguments[r])Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o]);return e}).apply(this,arguments)};Object.defineProperty(t,"__esModule",{value:!0}),t.detectFetchSupport=t.FetchReadableStreamTransport=void 0;var o=r(65),s=r(346);t.FetchReadableStreamTransport=function(e){return function(t){return function(e,t){return e.debug&&s.debug("fetchRequest",e),new i(e,t)}(t,e)}};var i=function(){function e(e,t){this.cancelled=!1,this.controller=self.AbortController&&new AbortController,this.options=e,this.init=t}return e.prototype.pump=function(e,t){var r=this;if(this.reader=e,this.cancelled)return this.options.debug&&s.debug("Fetch.pump.cancel at first pump"),void this.reader.cancel().catch((function(e){r.options.debug&&s.debug("Fetch.pump.reader.cancel exception",e)}));this.reader.read().then((function(e){if(e.done)return r.options.onEnd(),t;r.options.onChunk(e.value),r.pump(r.reader,t)})).catch((function(e){r.cancelled?r.options.debug&&s.debug("Fetch.catch - request cancelled"):(r.cancelled=!0,r.options.debug&&s.debug("Fetch.catch",e.message),r.options.onEnd(e))}))},e.prototype.send=function(e){var t=this;fetch(this.options.url,n(n({},this.init),{headers:this.metadata.toHeaders(),method:"POST",body:e,signal:this.controller&&this.controller.signal})).then((function(e){if(t.options.debug&&s.debug("Fetch.response",e),t.options.onHeaders(new o.Metadata(e.headers),e.status),!e.body)return e;t.pump(e.body.getReader(),e)})).catch((function(e){t.cancelled?t.options.debug&&s.debug("Fetch.catch - request cancelled"):(t.cancelled=!0,t.options.debug&&s.debug("Fetch.catch",e.message),t.options.onEnd(e))}))},e.prototype.sendMessage=function(e){this.send(e)},e.prototype.finishSend=function(){},e.prototype.start=function(e){this.metadata=e},e.prototype.cancel=function(){var e=this;this.cancelled?this.options.debug&&s.debug("Fetch.cancel already cancelled"):(this.cancelled=!0,this.controller?(this.options.debug&&s.debug("Fetch.cancel.controller.abort"),this.controller.abort()):this.options.debug&&s.debug("Fetch.cancel.missing abort controller"),this.reader?(this.options.debug&&s.debug("Fetch.cancel.reader.cancel"),this.reader.cancel().catch((function(t){e.options.debug&&s.debug("Fetch.cancel.reader.cancel exception",t)}))):this.options.debug&&s.debug("Fetch.cancel before reader"))},e}();t.detectFetchSupport=function(){return"undefined"!=typeof Response&&Response.prototype.hasOwnProperty("body")&&"function"==typeof Headers}},859:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.CrossBrowserHttpTransport=void 0;var n=r(229),o=r(210);t.CrossBrowserHttpTransport=function(e){if(n.detectFetchSupport()){var t={credentials:e.withCredentials?"include":"same-origin"};return n.FetchReadableStreamTransport(t)}return o.XhrTransport({withCredentials:e.withCredentials})}},210:function(e,t,r){"use strict";var n,o=this&&this.__extends||(n=function(e,t){return(n=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r])})(e,t)},function(e,t){function r(){this.constructor=e}n(e,t),e.prototype=null===t?Object.create(t):(r.prototype=t.prototype,new r)});Object.defineProperty(t,"__esModule",{value:!0}),t.stringToArrayBuffer=t.MozChunkedArrayBufferXHR=t.XHR=t.XhrTransport=void 0;var s=r(65),i=r(346),a=r(849);t.XhrTransport=function(e){return function(t){if(a.detectMozXHRSupport())return new d(t,e);if(a.detectXHROverrideMimeTypeSupport())return new u(t,e);throw new Error("This environment's XHR implementation cannot support binary transfer.")}};var u=function(){function e(e,t){this.options=e,this.init=t}return e.prototype.onProgressEvent=function(){this.options.debug&&i.debug("XHR.onProgressEvent.length: ",this.xhr.response.length);var e=this.xhr.response.substr(this.index);this.index=this.xhr.response.length;var t=p(e);this.options.onChunk(t)},e.prototype.onLoadEvent=function(){this.options.debug&&i.debug("XHR.onLoadEvent"),this.options.onEnd()},e.prototype.onStateChange=function(){this.options.debug&&i.debug("XHR.onStateChange",this.xhr.readyState),this.xhr.readyState===XMLHttpRequest.HEADERS_RECEIVED&&this.options.onHeaders(new s.Metadata(this.xhr.getAllResponseHeaders()),this.xhr.status)},e.prototype.sendMessage=function(e){this.xhr.send(e)},e.prototype.finishSend=function(){},e.prototype.start=function(e){var t=this;this.metadata=e;var r=new XMLHttpRequest;this.xhr=r,r.open("POST",this.options.url),this.configureXhr(),this.metadata.forEach((function(e,t){r.setRequestHeader(e,t.join(", "))})),r.withCredentials=Boolean(this.init.withCredentials),r.addEventListener("readystatechange",this.onStateChange.bind(this)),r.addEventListener("progress",this.onProgressEvent.bind(this)),r.addEventListener("loadend",this.onLoadEvent.bind(this)),r.addEventListener("error",(function(e){t.options.debug&&i.debug("XHR.error",e),t.options.onEnd(e.error)}))},e.prototype.configureXhr=function(){this.xhr.responseType="text",this.xhr.overrideMimeType("text/plain; charset=x-user-defined")},e.prototype.cancel=function(){this.options.debug&&i.debug("XHR.abort"),this.xhr.abort()},e}();t.XHR=u;var d=function(e){function t(){return null!==e&&e.apply(this,arguments)||this}return o(t,e),t.prototype.configureXhr=function(){this.options.debug&&i.debug("MozXHR.configureXhr: setting responseType to 'moz-chunked-arraybuffer'"),this.xhr.responseType="moz-chunked-arraybuffer"},t.prototype.onProgressEvent=function(){var e=this.xhr.response;this.options.debug&&i.debug("MozXHR.onProgressEvent: ",new Uint8Array(e)),this.options.onChunk(new Uint8Array(e))},t}(u);function c(e,t){var r=e.charCodeAt(t);if(r>=55296&&r<=56319){var n=e.charCodeAt(t+1);n>=56320&&n<=57343&&(r=65536+(r-55296<<10)+(n-56320))}return r}function p(e){for(var t=new Uint8Array(e.length),r=0,n=0;n<e.length;n++){var o=String.prototype.codePointAt?e.codePointAt(n):c(e,n);t[r++]=255&o}return t}t.MozChunkedArrayBufferXHR=d,t.stringToArrayBuffer=p},849:function(e,t){"use strict";var r;function n(){if(void 0!==r)return r;if(XMLHttpRequest){r=new XMLHttpRequest;try{r.open("GET","https://localhost")}catch(e){}}return r}function o(e){var t=n();if(!t)return!1;try{return t.responseType=e,t.responseType===e}catch(e){}return!1}Object.defineProperty(t,"__esModule",{value:!0}),t.detectXHROverrideMimeTypeSupport=t.detectMozXHRSupport=t.xhrSupportsResponseType=void 0,t.xhrSupportsResponseType=o,t.detectMozXHRSupport=function(){return"undefined"!=typeof XMLHttpRequest&&o("moz-chunked-arraybuffer")},t.detectXHROverrideMimeTypeSupport=function(){return"undefined"!=typeof XMLHttpRequest&&XMLHttpRequest.prototype.hasOwnProperty("overrideMimeType")}},540:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.WebsocketTransport=void 0;var n,o=r(346),s=r(617);!function(e){e[e.FINISH_SEND=1]="FINISH_SEND"}(n||(n={}));var i=new Uint8Array([1]);t.WebsocketTransport=function(){return function(e){return function(e){e.debug&&o.debug("websocketRequest",e);var t,r=function(e){if("https://"===e.substr(0,8))return"wss://"+e.substr(8);if("http://"===e.substr(0,7))return"ws://"+e.substr(7);throw new Error("Websocket transport constructed with non-https:// or http:// host.")}(e.url),a=[];function u(e){if(e===n.FINISH_SEND)t.send(i);else{var r=e,o=new Int8Array(r.byteLength+1);o.set(new Uint8Array([0])),o.set(r,1),t.send(o)}}return{sendMessage:function(e){t&&t.readyState!==t.CONNECTING?u(e):a.push(e)},finishSend:function(){t&&t.readyState!==t.CONNECTING?u(n.FINISH_SEND):a.push(n.FINISH_SEND)},start:function(n){(t=new WebSocket(r,["grpc-websockets"])).binaryType="arraybuffer",t.onopen=function(){var r;e.debug&&o.debug("websocketRequest.onopen"),t.send((r="",n.forEach((function(e,t){r+=e+": "+t.join(", ")+"\r\n"})),s.encodeASCII(r))),a.forEach((function(e){u(e)}))},t.onclose=function(t){e.debug&&o.debug("websocketRequest.onclose",t),e.onEnd()},t.onerror=function(t){e.debug&&o.debug("websocketRequest.onerror",t)},t.onmessage=function(t){e.onChunk(new Uint8Array(t.data))}},cancel:function(){e.debug&&o.debug("websocket.abort"),t.close()}}}(e)}}},35:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.unary=void 0;var n=r(65),o=r(934);t.unary=function(e,t){if(e.responseStream)throw new Error(".unary cannot be used with server-streaming methods. Use .invoke or .client instead.");if(e.requestStream)throw new Error(".unary cannot be used with client-streaming methods. Use .client instead.");var r=null,s=null,i=o.client(e,{host:t.host,transport:t.transport,debug:t.debug});return i.onHeaders((function(e){r=e})),i.onMessage((function(e){s=e})),i.onEnd((function(e,o,i){t.onEnd({status:e,statusMessage:o,headers:r||new n.Metadata,message:s,trailers:i})})),i.start(t.metadata),i.send(t.request),i.finishSend(),{close:function(){i.close()}}}},882:function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.frameRequest=void 0,t.frameRequest=function(e){var t=e.serializeBinary(),r=new ArrayBuffer(t.byteLength+5);return new DataView(r,1,4).setUint32(0,t.length,!1),new Uint8Array(r,5).set(t),new Uint8Array(r)}}},t={},function r(n){if(t[n])return t[n].exports;var o=t[n]={exports:{}};return e[n].call(o.exports,o,o.exports,r),o.exports}(607);// removed by dead control flow
+{ var e, t; }}));
+
 /***/ })
 
 /******/ 	});
@@ -407,12 +411,11 @@ exports.splitHeaderValue = splitHeaderValue;
 /******/ 	}
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
 
-;// CONCATENATED MODULE: ./node_modules/@snap/ts-inject/dist/esm/Injectable.js
+;// ./node_modules/@snap/ts-inject/dist/esm/Injectable.js
 function Injectable(token, dependenciesOrFn, maybeFn) {
     const dependencies = Array.isArray(dependenciesOrFn) ? dependenciesOrFn : [];
     const fn = typeof dependenciesOrFn === "function" ? dependenciesOrFn : maybeFn;
@@ -458,12 +461,12 @@ function ConcatInjectable(token, dependenciesOrFn, maybeFn) {
     return factory;
 }
 //# sourceMappingURL=Injectable.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/copyDefinedProperties.js
+;// ./node_modules/@snap/camera-kit/dist/common/copyDefinedProperties.js
 function copyDefinedProperties(obj) {
     return Object.fromEntries(Object.entries(obj).filter(([_, value]) => value !== undefined));
 }
 //# sourceMappingURL=copyDefinedProperties.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/configurationOverrides.js
+;// ./node_modules/@snap/camera-kit/dist/configurationOverrides.js
 const windowFieldPrefix = "__snap_camkit_override__";
 const configPropertiesToOverride = [
     "wasmEndpointOverride",
@@ -502,7 +505,7 @@ function getConfigurationOverrides() {
     return overridesString && JSON.parse(overridesString);
 }
 //# sourceMappingURL=configurationOverrides.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/configuration.js
+;// ./node_modules/@snap/camera-kit/dist/configuration.js
 
 
 
@@ -534,7 +537,7 @@ const createCameraKitConfigurationFactory = (configuration) => {
     });
 };
 //# sourceMappingURL=configuration.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/namedErrors.js
+;// ./node_modules/@snap/camera-kit/dist/namedErrors.js
 function cleanErrorStack(stack) {
     const [first, _, ...rest] = stack.split("\n");
     return [first, ...rest].join("\n");
@@ -564,7 +567,7 @@ const lensAssetError = namedError("LensAssetError");
 const bootstrapError = namedError("BootstrapError");
 const argumentValidationError = namedError("ArgumentValidationError");
 //# sourceMappingURL=namedErrors.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/benchmark/webglUtils.js
+;// ./node_modules/@snap/camera-kit/dist/benchmark/webglUtils.js
 
 const webGLEntityCreationError = (name) => webGLError(`Could not create ${name}.`);
 function webglUtils_createProgram(gl, vertexSource, fragmentSource) {
@@ -652,7 +655,7 @@ function webglUtils_promiseSync(gl) {
     });
 }
 //# sourceMappingURL=webglUtils.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/benchmark/benchmarkGflops.js
+;// ./node_modules/@snap/camera-kit/dist/benchmark/benchmarkGflops.js
 
 
 const vertexSource = (/* unused pure expression or super */ null && (`#version 300 es
@@ -769,7 +772,7 @@ function benchmarkGflops_benchmarkGflops(gl) {
     });
 }
 //# sourceMappingURL=benchmarkGflops.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/benchmark/estimateLensPerformanceCluster.js
+;// ./node_modules/@snap/camera-kit/dist/benchmark/estimateLensPerformanceCluster.js
 
 
 
@@ -804,7 +807,7 @@ function estimateLensPerformance() {
     });
 }
 //# sourceMappingURL=estimateLensPerformanceCluster.js.map
-;// CONCATENATED MODULE: ./node_modules/tslib/tslib.es6.mjs
+;// ./node_modules/tslib/tslib.es6.mjs
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -1207,7 +1210,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
   __rewriteRelativeImportExtension,
 });
 
-;// CONCATENATED MODULE: ./node_modules/@snap/ts-inject/dist/esm/memoize.js
+;// ./node_modules/@snap/ts-inject/dist/esm/memoize.js
 function isMemoized(fn) {
     return typeof fn === "function" && typeof fn.delegate === "function";
 }
@@ -1224,11 +1227,11 @@ function memoize(thisArg, delegate) {
     return memoized;
 }
 //# sourceMappingURL=memoize.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/ts-inject/dist/esm/entries.js
+;// ./node_modules/@snap/ts-inject/dist/esm/entries.js
 const entries = (o) => Object.entries(o);
 const fromEntries = (entries) => Object.fromEntries(entries);
 //# sourceMappingURL=entries.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/ts-inject/dist/esm/PartialContainer.js
+;// ./node_modules/@snap/ts-inject/dist/esm/PartialContainer.js
 
 
 
@@ -1260,7 +1263,7 @@ class PartialContainer_PartialContainer {
     }
 }
 //# sourceMappingURL=PartialContainer.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/ts-inject/dist/esm/Container.js
+;// ./node_modules/@snap/ts-inject/dist/esm/Container.js
 
 
 
@@ -1353,7 +1356,7 @@ class Container {
     }
 }
 //# sourceMappingURL=Container.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/arrayBufferParsingHandler.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/arrayBufferParsingHandler.js
 
 const createArrayBufferParsingHandler = () => (next) => (req, metadata) => tslib_es6_awaiter(void 0, void 0, void 0, function* () {
     const response = yield next(req, metadata);
@@ -1367,7 +1370,7 @@ const createArrayBufferParsingHandler = () => (next) => (req, metadata) => tslib
     return [buffer, response];
 });
 //# sourceMappingURL=arrayBufferParsingHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/HandlerChainBuilder.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/HandlerChainBuilder.js
 class HandlerChainBuilder {
     constructor(inner) {
         this.inner = inner;
@@ -1423,12 +1426,12 @@ class HandlerChainBuilder {
     }
 }
 //# sourceMappingURL=HandlerChainBuilder.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/isFunction.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/isFunction.js
 function isFunction(value) {
     return typeof value === 'function';
 }
 //# sourceMappingURL=isFunction.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/createErrorClass.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/createErrorClass.js
 function createErrorClass(createImpl) {
     var _super = function (instance) {
         Error.call(instance);
@@ -1440,7 +1443,7 @@ function createErrorClass(createImpl) {
     return ctorFunc;
 }
 //# sourceMappingURL=createErrorClass.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/UnsubscriptionError.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/UnsubscriptionError.js
 
 var UnsubscriptionError = createErrorClass(function (_super) {
     return function UnsubscriptionErrorImpl(errors) {
@@ -1453,7 +1456,7 @@ var UnsubscriptionError = createErrorClass(function (_super) {
     };
 });
 //# sourceMappingURL=UnsubscriptionError.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/arrRemove.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/arrRemove.js
 function arrRemove(arr, item) {
     if (arr) {
         var index = arr.indexOf(item);
@@ -1461,7 +1464,7 @@ function arrRemove(arr, item) {
     }
 }
 //# sourceMappingURL=arrRemove.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/Subscription.js
+;// ./node_modules/rxjs/dist/esm5/internal/Subscription.js
 
 
 
@@ -1605,7 +1608,7 @@ function execFinalizer(finalizer) {
     }
 }
 //# sourceMappingURL=Subscription.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/config.js
+;// ./node_modules/rxjs/dist/esm5/internal/config.js
 var config = {
     onUnhandledError: null,
     onStoppedNotification: null,
@@ -1614,7 +1617,7 @@ var config = {
     useDeprecatedNextContext: false,
 };
 //# sourceMappingURL=config.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/scheduler/timeoutProvider.js
+;// ./node_modules/rxjs/dist/esm5/internal/scheduler/timeoutProvider.js
 
 var timeoutProvider = {
     setTimeout: function (handler, timeout) {
@@ -1635,7 +1638,7 @@ var timeoutProvider = {
     delegate: undefined,
 };
 //# sourceMappingURL=timeoutProvider.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/reportUnhandledError.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/reportUnhandledError.js
 
 
 function reportUnhandledError(err) {
@@ -1650,10 +1653,10 @@ function reportUnhandledError(err) {
     });
 }
 //# sourceMappingURL=reportUnhandledError.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/noop.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/noop.js
 function noop() { }
 //# sourceMappingURL=noop.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/NotificationFactories.js
+;// ./node_modules/rxjs/dist/esm5/internal/NotificationFactories.js
 var COMPLETE_NOTIFICATION = (function () { return createNotification('C', undefined, undefined); })();
 function errorNotification(error) {
     return createNotification('E', undefined, error);
@@ -1669,7 +1672,7 @@ function createNotification(kind, value, error) {
     };
 }
 //# sourceMappingURL=NotificationFactories.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/errorContext.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/errorContext.js
 
 var context = null;
 function errorContext(cb) {
@@ -1698,7 +1701,7 @@ function captureError(err) {
     }
 }
 //# sourceMappingURL=errorContext.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/Subscriber.js
+;// ./node_modules/rxjs/dist/esm5/internal/Subscriber.js
 
 
 
@@ -1883,15 +1886,15 @@ var EMPTY_OBSERVER = {
     complete: noop,
 };
 //# sourceMappingURL=Subscriber.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/symbol/observable.js
+;// ./node_modules/rxjs/dist/esm5/internal/symbol/observable.js
 var observable = (function () { return (typeof Symbol === 'function' && Symbol.observable) || '@@observable'; })();
 //# sourceMappingURL=observable.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/identity.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/identity.js
 function identity_identity(x) {
     return x;
 }
 //# sourceMappingURL=identity.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/pipe.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/pipe.js
 
 function pipe() {
     var fns = [];
@@ -1912,7 +1915,7 @@ function pipeFromArray(fns) {
     };
 }
 //# sourceMappingURL=pipe.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/Observable.js
+;// ./node_modules/rxjs/dist/esm5/internal/Observable.js
 
 
 
@@ -2015,7 +2018,7 @@ function isSubscriber(value) {
     return (value && value instanceof Subscriber) || (isObserver(value) && isSubscription(value));
 }
 //# sourceMappingURL=Observable.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/ObjectUnsubscribedError.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/ObjectUnsubscribedError.js
 
 var ObjectUnsubscribedError = createErrorClass(function (_super) {
     return function ObjectUnsubscribedErrorImpl() {
@@ -2025,7 +2028,7 @@ var ObjectUnsubscribedError = createErrorClass(function (_super) {
     };
 });
 //# sourceMappingURL=ObjectUnsubscribedError.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/Subject.js
+;// ./node_modules/rxjs/dist/esm5/internal/Subject.js
 
 
 
@@ -2188,11 +2191,11 @@ var AnonymousSubject = (function (_super) {
 }(Subject));
 
 //# sourceMappingURL=Subject.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/entries.js
+;// ./node_modules/@snap/camera-kit/dist/common/entries.js
 const entries_entries = (o) => Object.entries(o);
 const entries_fromEntries = (entries) => Object.fromEntries(entries);
 //# sourceMappingURL=entries.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/logger/logger.js
+;// ./node_modules/@snap/camera-kit/dist/logger/logger.js
 
 
 let logEntriesSubject = new Subject();
@@ -2220,7 +2223,7 @@ function getLogger(module) {
     }, {});
 }
 //# sourceMappingURL=logger.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/retryingHandler.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/retryingHandler.js
 
 
 
@@ -2283,7 +2286,7 @@ const createRetryingHandler = (options = {}) => {
     return (next) => makeRequestAttempt(next);
 };
 //# sourceMappingURL=retryingHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/noCorsRetryingFetchHandler.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/noCorsRetryingFetchHandler.js
 
 
 
@@ -2317,7 +2320,7 @@ const createNoCorsRetryingFetchHandler = () => {
     });
 };
 //# sourceMappingURL=noCorsRetryingFetchHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/typeguards.js
+;// ./node_modules/@snap/camera-kit/dist/common/typeguards.js
 function typeguards_isString(value) {
     return typeof value === "string";
 }
@@ -2398,7 +2401,7 @@ function isPromise(value) {
     return typeof maybePromise.then === "function" && typeof maybePromise.catch === "function";
 }
 //# sourceMappingURL=typeguards.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/timeoutHandler.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/timeoutHandler.js
 
 
 const timeoutHandler_sleep = (millis) => new Promise((resolve) => setTimeout(resolve, millis));
@@ -2419,7 +2422,7 @@ const createTimeoutHandler = (options = {}) => {
     return (next) => (req, meta) => Promise.race([next(req, meta), timeoutHandler_sleep(timeout).then(() => Promise.reject(createError(req, meta)))]);
 };
 //# sourceMappingURL=timeoutHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/defaultFetchHandler.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/defaultFetchHandler.js
 
 
 
@@ -2443,7 +2446,7 @@ const defaultFetchHandlerFactory = Injectable("defaultFetchHandler", () => {
     })).handler);
 });
 //# sourceMappingURL=defaultFetchHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/utils.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/utils.js
 function withRequestPriority(request, lowPriority) {
     if (lowPriority) {
         return Object.assign(Object.assign({}, request), { priority: "low" });
@@ -2451,7 +2454,7 @@ function withRequestPriority(request, lowPriority) {
     return request;
 }
 //# sourceMappingURL=utils.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens/assets/remoteMediaAssetLoaderFactory.js
+;// ./node_modules/@snap/camera-kit/dist/lens/assets/remoteMediaAssetLoaderFactory.js
 
 
 
@@ -2470,7 +2473,7 @@ const remoteMediaAssetLoaderFactory = Injectable("remoteMediaAssetLoader", [defa
     };
 });
 //# sourceMappingURL=remoteMediaAssetLoaderFactory.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/EmptyError.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/EmptyError.js
 
 var EmptyError = createErrorClass(function (_super) {
     return function EmptyErrorImpl() {
@@ -2480,7 +2483,7 @@ var EmptyError = createErrorClass(function (_super) {
     };
 });
 //# sourceMappingURL=EmptyError.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/firstValueFrom.js
+;// ./node_modules/rxjs/dist/esm5/internal/firstValueFrom.js
 
 
 function firstValueFrom(source, config) {
@@ -2505,34 +2508,34 @@ function firstValueFrom(source, config) {
     });
 }
 //# sourceMappingURL=firstValueFrom.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/isArrayLike.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/isArrayLike.js
 var isArrayLike = (function (x) { return x && typeof x.length === 'number' && typeof x !== 'function'; });
 //# sourceMappingURL=isArrayLike.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/isPromise.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/isPromise.js
 
 function isPromise_isPromise(value) {
     return isFunction(value === null || value === void 0 ? void 0 : value.then);
 }
 //# sourceMappingURL=isPromise.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/isInteropObservable.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/isInteropObservable.js
 
 
 function isInteropObservable(input) {
     return isFunction(input[observable]);
 }
 //# sourceMappingURL=isInteropObservable.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/isAsyncIterable.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/isAsyncIterable.js
 
 function isAsyncIterable(obj) {
     return Symbol.asyncIterator && isFunction(obj === null || obj === void 0 ? void 0 : obj[Symbol.asyncIterator]);
 }
 //# sourceMappingURL=isAsyncIterable.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/throwUnobservableError.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/throwUnobservableError.js
 function createInvalidObservableTypeError(input) {
     return new TypeError("You provided " + (input !== null && typeof input === 'object' ? 'an invalid object' : "'" + input + "'") + " where a stream was expected. You can provide an Observable, Promise, ReadableStream, Array, AsyncIterable, or Iterable.");
 }
 //# sourceMappingURL=throwUnobservableError.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/symbol/iterator.js
+;// ./node_modules/rxjs/dist/esm5/internal/symbol/iterator.js
 function getSymbolIterator() {
     if (typeof Symbol !== 'function' || !Symbol.iterator) {
         return '@@iterator';
@@ -2541,14 +2544,14 @@ function getSymbolIterator() {
 }
 var iterator_iterator = getSymbolIterator();
 //# sourceMappingURL=iterator.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/isIterable.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/isIterable.js
 
 
 function isIterable(input) {
     return isFunction(input === null || input === void 0 ? void 0 : input[iterator_iterator]);
 }
 //# sourceMappingURL=isIterable.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/isReadableStreamLike.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/isReadableStreamLike.js
 
 
 function readableStreamLikeToAsyncGenerator(readableStream) {
@@ -2563,7 +2566,8 @@ function readableStreamLikeToAsyncGenerator(readableStream) {
                     _b.trys.push([1, , 9, 10]);
                     _b.label = 2;
                 case 2:
-                    if (false) {}
+                    if (false) // removed by dead control flow
+{}
                     return [4, __await(reader.read())];
                 case 3:
                     _a = _b.sent(), value = _a.value, done = _a.done;
@@ -2588,7 +2592,7 @@ function isReadableStreamLike(obj) {
     return isFunction(obj === null || obj === void 0 ? void 0 : obj.getReader);
 }
 //# sourceMappingURL=isReadableStreamLike.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/observable/innerFrom.js
+;// ./node_modules/rxjs/dist/esm5/internal/observable/innerFrom.js
 
 
 
@@ -2732,7 +2736,7 @@ function innerFrom_process(asyncIterable, subscriber) {
     });
 }
 //# sourceMappingURL=innerFrom.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/OperatorSubscriber.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/OperatorSubscriber.js
 
 
 function createOperatorSubscriber(destination, onNext, onComplete, onError, onFinalize) {
@@ -2794,7 +2798,7 @@ var OperatorSubscriber = (function (_super) {
 }(Subscriber));
 
 //# sourceMappingURL=OperatorSubscriber.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/lift.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/lift.js
 
 function hasLift(source) {
     return isFunction(source === null || source === void 0 ? void 0 : source.lift);
@@ -2815,7 +2819,7 @@ function operate(init) {
     };
 }
 //# sourceMappingURL=lift.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/catchError.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/catchError.js
 
 
 
@@ -2843,7 +2847,7 @@ function catchError(selector) {
     });
 }
 //# sourceMappingURL=catchError.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/map.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/map.js
 
 
 function map(project, thisArg) {
@@ -2855,7 +2859,7 @@ function map(project, thisArg) {
     });
 }
 //# sourceMappingURL=map.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/executeSchedule.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/executeSchedule.js
 function executeSchedule(parentSubscription, scheduler, work, delay, repeat) {
     if (delay === void 0) { delay = 0; }
     if (repeat === void 0) { repeat = false; }
@@ -2874,7 +2878,7 @@ function executeSchedule(parentSubscription, scheduler, work, delay, repeat) {
     }
 }
 //# sourceMappingURL=executeSchedule.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/mergeInternals.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/mergeInternals.js
 
 
 
@@ -2936,7 +2940,7 @@ function mergeInternals(source, subscriber, project, concurrent, onBeforeNext, e
     };
 }
 //# sourceMappingURL=mergeInternals.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/mergeMap.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/mergeMap.js
 
 
 
@@ -2953,7 +2957,7 @@ function mergeMap(project, resultSelector, concurrent) {
     return operate(function (source, subscriber) { return mergeInternals(source, subscriber, project, concurrent); });
 }
 //# sourceMappingURL=mergeMap.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/observeOn.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/observeOn.js
 
 
 
@@ -2964,7 +2968,7 @@ function observeOn(scheduler, delay) {
     });
 }
 //# sourceMappingURL=observeOn.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/subscribeOn.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/subscribeOn.js
 
 function subscribeOn(scheduler, delay) {
     if (delay === void 0) { delay = 0; }
@@ -2973,7 +2977,7 @@ function subscribeOn(scheduler, delay) {
     });
 }
 //# sourceMappingURL=subscribeOn.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/scheduled/scheduleObservable.js
+;// ./node_modules/rxjs/dist/esm5/internal/scheduled/scheduleObservable.js
 
 
 
@@ -2981,7 +2985,7 @@ function scheduleObservable(input, scheduler) {
     return innerFrom_innerFrom(input).pipe(subscribeOn(scheduler), observeOn(scheduler));
 }
 //# sourceMappingURL=scheduleObservable.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/scheduled/schedulePromise.js
+;// ./node_modules/rxjs/dist/esm5/internal/scheduled/schedulePromise.js
 
 
 
@@ -2989,7 +2993,7 @@ function schedulePromise(input, scheduler) {
     return innerFrom_innerFrom(input).pipe(subscribeOn(scheduler), observeOn(scheduler));
 }
 //# sourceMappingURL=schedulePromise.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/scheduled/scheduleArray.js
+;// ./node_modules/rxjs/dist/esm5/internal/scheduled/scheduleArray.js
 
 function scheduleArray(input, scheduler) {
     return new Observable_Observable(function (subscriber) {
@@ -3008,7 +3012,7 @@ function scheduleArray(input, scheduler) {
     });
 }
 //# sourceMappingURL=scheduleArray.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/scheduled/scheduleIterable.js
+;// ./node_modules/rxjs/dist/esm5/internal/scheduled/scheduleIterable.js
 
 
 
@@ -3041,7 +3045,7 @@ function scheduleIterable(input, scheduler) {
     });
 }
 //# sourceMappingURL=scheduleIterable.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/scheduled/scheduleAsyncIterable.js
+;// ./node_modules/rxjs/dist/esm5/internal/scheduled/scheduleAsyncIterable.js
 
 
 function scheduleAsyncIterable(input, scheduler) {
@@ -3065,14 +3069,14 @@ function scheduleAsyncIterable(input, scheduler) {
     });
 }
 //# sourceMappingURL=scheduleAsyncIterable.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/scheduled/scheduleReadableStreamLike.js
+;// ./node_modules/rxjs/dist/esm5/internal/scheduled/scheduleReadableStreamLike.js
 
 
 function scheduleReadableStreamLike(input, scheduler) {
     return scheduleAsyncIterable(readableStreamLikeToAsyncGenerator(input), scheduler);
 }
 //# sourceMappingURL=scheduleReadableStreamLike.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/scheduled/scheduled.js
+;// ./node_modules/rxjs/dist/esm5/internal/scheduled/scheduled.js
 
 
 
@@ -3110,14 +3114,14 @@ function scheduled(input, scheduler) {
     throw createInvalidObservableTypeError(input);
 }
 //# sourceMappingURL=scheduled.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/observable/from.js
+;// ./node_modules/rxjs/dist/esm5/internal/observable/from.js
 
 
 function from_from(input, scheduler) {
     return scheduler ? scheduled(input, scheduler) : innerFrom_innerFrom(input);
 }
 //# sourceMappingURL=from.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/scheduler/dateTimestampProvider.js
+;// ./node_modules/rxjs/dist/esm5/internal/scheduler/dateTimestampProvider.js
 var dateTimestampProvider = {
     now: function () {
         return (dateTimestampProvider.delegate || Date).now();
@@ -3125,7 +3129,7 @@ var dateTimestampProvider = {
     delegate: undefined,
 };
 //# sourceMappingURL=dateTimestampProvider.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/ReplaySubject.js
+;// ./node_modules/rxjs/dist/esm5/internal/ReplaySubject.js
 
 
 
@@ -3184,7 +3188,7 @@ var ReplaySubject = (function (_super) {
 }(Subject));
 
 //# sourceMappingURL=ReplaySubject.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/share.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/share.js
 
 
 
@@ -3270,7 +3274,7 @@ function handleReset(reset, on) {
     return innerFrom_innerFrom(on.apply(void 0, __spreadArray([], __read(args)))).subscribe(onSubscriber);
 }
 //# sourceMappingURL=share.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/shareReplay.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/shareReplay.js
 
 
 function shareReplay(configOrBufferSize, windowTime, scheduler) {
@@ -3291,7 +3295,7 @@ function shareReplay(configOrBufferSize, windowTime, scheduler) {
     });
 }
 //# sourceMappingURL=shareReplay.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/observable/empty.js
+;// ./node_modules/rxjs/dist/esm5/internal/observable/empty.js
 
 var EMPTY = new Observable_Observable(function (subscriber) { return subscriber.complete(); });
 function empty(scheduler) {
@@ -3301,7 +3305,7 @@ function emptyScheduled(scheduler) {
     return new Observable(function (subscriber) { return scheduler.schedule(function () { return subscriber.complete(); }); });
 }
 //# sourceMappingURL=empty.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/take.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/take.js
 
 
 
@@ -3322,7 +3326,7 @@ function take(count) {
         });
 }
 //# sourceMappingURL=take.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/namespace.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/namespace.js
 const protobufPackage = "snapchat.cdp.cof";
 var Namespace;
 (function (Namespace) {
@@ -3333,7 +3337,7 @@ var Namespace;
     Namespace[Namespace["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
 })(Namespace || (Namespace = {}));
 //# sourceMappingURL=namespace.js.map
-;// CONCATENATED MODULE: ./node_modules/@bufbuild/protobuf/dist/esm/wire/varint.js
+;// ./node_modules/@bufbuild/protobuf/dist/esm/wire/varint.js
 // Copyright 2008 Google Inc.  All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -3366,7 +3370,6 @@ var Namespace;
 // of the input file used when generating it.  This code is not
 // standalone and requires a support library to be linked with it.  This
 // support library is itself covered by the above license.
-/* eslint-disable prefer-const,@typescript-eslint/restrict-plus-operands */
 /**
  * Read a 64 bit varint as two JS numbers.
  *
@@ -3649,8 +3652,8 @@ function varint32read() {
     return result >>> 0;
 }
 
-;// CONCATENATED MODULE: ./node_modules/@bufbuild/protobuf/dist/esm/proto-int64.js
-// Copyright 2021-2024 Buf Technologies, Inc.
+;// ./node_modules/@bufbuild/protobuf/dist/esm/proto-int64.js
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -3680,7 +3683,10 @@ function makeInt64Support() {
             typeof process.env != "object" ||
             process.env.BUF_BIGINT_DISABLE !== "1");
     if (ok) {
-        const MIN = BigInt("-9223372036854775808"), MAX = BigInt("9223372036854775807"), UMIN = BigInt("0"), UMAX = BigInt("18446744073709551615");
+        const MIN = BigInt("-9223372036854775808");
+        const MAX = BigInt("9223372036854775807");
+        const UMIN = BigInt("0");
+        const UMAX = BigInt("18446744073709551615");
         return {
             zero: BigInt(0),
             supported: true,
@@ -3774,8 +3780,8 @@ function assertUInt64String(value) {
     }
 }
 
-;// CONCATENATED MODULE: ./node_modules/@bufbuild/protobuf/dist/esm/wire/text-encoding.js
-// Copyright 2021-2024 Buf Technologies, Inc.
+;// ./node_modules/@bufbuild/protobuf/dist/esm/wire/text-encoding.js
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -3817,7 +3823,7 @@ function getTextEncoding() {
                     encodeURIComponent(text);
                     return true;
                 }
-                catch (e) {
+                catch (_) {
                     return false;
                 }
             },
@@ -3826,8 +3832,8 @@ function getTextEncoding() {
     return globalThis[symbol];
 }
 
-;// CONCATENATED MODULE: ./node_modules/@bufbuild/protobuf/dist/esm/wire/binary-encoding.js
-// Copyright 2021-2024 Buf Technologies, Inc.
+;// ./node_modules/@bufbuild/protobuf/dist/esm/wire/binary-encoding.js
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -3843,7 +3849,6 @@ function getTextEncoding() {
 
 
 
-/* eslint-disable prefer-const,no-case-declarations,@typescript-eslint/restrict-plus-operands */
 /**
  * Protobuf binary format wire types.
  *
@@ -4104,7 +4109,7 @@ class BinaryWriter {
      * Write a `sint64` value, a signed, zig-zag-encoded 64-bit varint.
      */
     sint64(value) {
-        let tc = protoInt64.enc(value), 
+        const tc = protoInt64.enc(value), 
         // zigzag encode
         sign = tc.hi >> 31, lo = (tc.lo << 1) ^ sign, hi = ((tc.hi << 1) | (tc.lo >>> 31)) ^ sign;
         varint64write(lo, hi, this.buf);
@@ -4114,7 +4119,7 @@ class BinaryWriter {
      * Write a `uint64` value, an unsigned 64-bit varint.
      */
     uint64(value) {
-        let tc = protoInt64.uEnc(value);
+        const tc = protoInt64.uEnc(value);
         varint64write(tc.lo, tc.hi, this.buf);
         return this;
     }
@@ -4155,11 +4160,9 @@ class BinaryReader {
                     // ignore
                 }
                 break;
-            // eslint-disable-next-line
             // @ts-expect-error TS7029: Fallthrough case in switch
             case WireType.Bit64:
                 this.pos += 4;
-            // eslint-disable-next-line no-fallthrough
             case WireType.Bit32:
                 this.pos += 4;
                 break;
@@ -4240,12 +4243,14 @@ class BinaryReader {
      * Read a `fixed32` field, an unsigned, fixed-length 32-bit integer.
      */
     fixed32() {
+        // biome-ignore lint/suspicious/noAssignInExpressions: no
         return this.view.getUint32((this.pos += 4) - 4, true);
     }
     /**
      * Read a `sfixed32` field, a signed, fixed-length 32-bit integer.
      */
     sfixed32() {
+        // biome-ignore lint/suspicious/noAssignInExpressions: no
         return this.view.getInt32((this.pos += 4) - 4, true);
     }
     /**
@@ -4264,12 +4269,14 @@ class BinaryReader {
      * Read a `float` field, 32-bit floating point number.
      */
     float() {
+        // biome-ignore lint/suspicious/noAssignInExpressions: no
         return this.view.getFloat32((this.pos += 4) - 4, true);
     }
     /**
      * Read a `double` field, a 64-bit floating point number.
      */
     double() {
+        // biome-ignore lint/suspicious/noAssignInExpressions: no
         return this.view.getFloat64((this.pos += 8) - 8, true);
     }
     /**
@@ -4325,7 +4332,7 @@ function assertFloat32(arg) {
     if (typeof arg == "string") {
         const o = arg;
         arg = Number(arg);
-        if (isNaN(arg) && o !== "NaN") {
+        if (Number.isNaN(arg) && o !== "NaN") {
             throw new Error("invalid float32: " + o);
         }
     }
@@ -4337,7 +4344,7 @@ function assertFloat32(arg) {
         throw new Error("invalid float32: " + arg);
 }
 
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/google/protobuf/any.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/google/protobuf/any.js
 
 const any_protobufPackage = "google.protobuf";
 function createBaseAny() {
@@ -4394,7 +4401,7 @@ const Any = {
     },
 };
 //# sourceMappingURL=any.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/business_events.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/business_events.js
 
 const business_events_protobufPackage = "com.snap.camerakit.v3";
 var CameraKitFlavor;
@@ -4585,7 +4592,7 @@ const ExtensionEventBase = {
     },
 };
 //# sourceMappingURL=business_events.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/google/protobuf/timestamp.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/google/protobuf/timestamp.js
 
 const timestamp_protobufPackage = "google.protobuf";
 function createBaseTimestamp() {
@@ -4642,7 +4649,7 @@ const Timestamp = {
     },
 };
 //# sourceMappingURL=timestamp.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/legal_prompt.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/legal_prompt.js
 
 
 const legal_prompt_protobufPackage = "com.snap.camerakit.v3";
@@ -4793,7 +4800,7 @@ function fromTimestamp(t) {
     return new globalThis.Date(millis);
 }
 //# sourceMappingURL=legal_prompt.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/lens.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/lens.js
 
 
 const lens_protobufPackage = "com.snap.camerakit.v3";
@@ -5473,7 +5480,7 @@ const Scannable = {
     },
 };
 //# sourceMappingURL=lens.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/operational_metrics.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/operational_metrics.js
 
 
 const operational_metrics_protobufPackage = "com.snap.camerakit.v3";
@@ -5629,7 +5636,7 @@ function operational_metrics_fromTimestamp(t) {
     return new globalThis.Date(millis);
 }
 //# sourceMappingURL=operational_metrics.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/ranking.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/ranking.js
 
 const ranking_protobufPackage = "com.snap.camerakit.v3";
 var RankingData_OSType;
@@ -5728,7 +5735,7 @@ const RankingData = {
     },
 };
 //# sourceMappingURL=ranking.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/service.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/service.js
 
 
 
@@ -7128,8 +7135,8 @@ const MetricsDefinition = {
 };
 //# sourceMappingURL=service.js.map
 // EXTERNAL MODULE: ./node_modules/@improbable-eng/grpc-web/dist/grpc-web-client.umd.js
-var grpc_web_client_umd = __webpack_require__(37);
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/result.js
+var grpc_web_client_umd = __webpack_require__(553);
+;// ./node_modules/@snap/camera-kit/dist/common/result.js
 class OkResult {
     constructor(value) {
         this.value = value;
@@ -7169,7 +7176,7 @@ class ErrResult {
 }
 const Err = (value) => new ErrResult(value);
 //# sourceMappingURL=result.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/memoize.js
+;// ./node_modules/@snap/camera-kit/dist/common/memoize.js
 function memoize_isMemoized(fn) {
     return typeof fn === "function" && typeof fn.delegate === "function";
 }
@@ -7185,17 +7192,17 @@ function memoize_memoize(delegate) {
     return memoized;
 }
 //# sourceMappingURL=memoize.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/environment.js
-/* harmony default export */ const environment = ({ PACKAGE_VERSION: "1.5.0" });
+;// ./node_modules/@snap/camera-kit/dist/environment.js
+/* harmony default export */ const environment = ({ PACKAGE_VERSION: "1.6.1" });
 //# sourceMappingURL=environment.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lensCoreWasmVersions.js
+;// ./node_modules/@snap/camera-kit/dist/lensCoreWasmVersions.js
 /* harmony default export */ const lensCoreWasmVersions = ({
-    version: "309",
-    buildNumber: "586",
-    baseUrl: "https://cf-st.sc-cdn.net/d/r38Sk7x9s1MK7V7P6U2SZ?go=IgsKCTIBBEgBUFxgAQ%3D%3D&uc=92",
+    version: "313",
+    buildNumber: "629",
+    baseUrl: "https://cf-st.sc-cdn.net/d/0HAchv75u9EAJsMvZsIut?go=IgsKCTIBBEgBUFxgAQ%3D%3D&uc=92",
 });
 //# sourceMappingURL=lensCoreWasmVersions.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/platform/platformInfo.js
+;// ./node_modules/@snap/camera-kit/dist/platform/platformInfo.js
 
 
 
@@ -7352,7 +7359,7 @@ const getPlatformInfo = memoize_memoize(function getPlatformInfo() {
     };
 });
 //# sourceMappingURL=platformInfo.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/platform/cameraKitUserAgent.js
+;// ./node_modules/@snap/camera-kit/dist/platform/cameraKitUserAgent.js
 
 
 
@@ -7366,7 +7373,7 @@ const getCameraKitUserAgent = memoize_memoize(function getCameraKitUserAgent() {
         `AppId/${origin}`);
 });
 //# sourceMappingURL=cameraKitUserAgent.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/headersModifyingFetchHandler.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/headersModifyingFetchHandler.js
 const createHeadersModifyingFetchHandler = (modifyHeaders) => (next) => (input, init) => {
     const headers = init && init.headers
         ? new Headers(init.headers)
@@ -7377,7 +7384,7 @@ const createHeadersModifyingFetchHandler = (modifyHeaders) => (next) => (input, 
     return next(input, Object.assign(Object.assign({}, init), { headers: modifiedHeaders }));
 };
 //# sourceMappingURL=headersModifyingFetchHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/cameraKitServiceFetchHandlerFactory.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/cameraKitServiceFetchHandlerFactory.js
 
 
 
@@ -7392,7 +7399,7 @@ const cameraKitServiceFetchHandlerFactory = Injectable("cameraKitServiceFetchHan
     })).handler;
 });
 //# sourceMappingURL=cameraKitServiceFetchHandlerFactory.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/errorHelpers.js
+;// ./node_modules/@snap/camera-kit/dist/common/errorHelpers.js
 function stringifyError(error) {
     var _a;
     const outer = (_a = error.stack) !== null && _a !== void 0 ? _a : "";
@@ -7413,14 +7420,14 @@ function errorHelpers_ensureError(error) {
     }
 }
 //# sourceMappingURL=errorHelpers.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/events/TypedCustomEvent.js
+;// ./node_modules/@snap/camera-kit/dist/events/TypedCustomEvent.js
 class TypedCustomEvent extends CustomEvent {
     constructor(type, detail, eventInitDict = {}) {
         super(type, Object.assign(Object.assign({}, eventInitDict), { detail }));
     }
 }
 //# sourceMappingURL=TypedCustomEvent.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/events/TypedEventTarget.js
+;// ./node_modules/@snap/camera-kit/dist/events/TypedEventTarget.js
 class TypedEventTarget {
     constructor() {
         this.listeners = new Map();
@@ -7463,11 +7470,11 @@ class TypedEventTarget {
     }
 }
 //# sourceMappingURL=TypedEventTarget.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/time.js
+;// ./node_modules/@snap/camera-kit/dist/common/time.js
 const getTimeMs = () => performance.now();
 const convertDaysToSeconds = (days) => days * 24 * 60 * 60;
 //# sourceMappingURL=time.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/operational/Metric.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/operational/Metric.js
 const nameDelimiter = "_";
 const dimensionDelimiter = ".";
 const delimiterRegex = new RegExp(`^${nameDelimiter}+|${nameDelimiter}+$`, "g");
@@ -7491,7 +7498,7 @@ function serializeMetricDimensions(dimensions) {
         .join(dimensionDelimiter)}`;
 }
 //# sourceMappingURL=Metric.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/operational/Timer.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/operational/Timer.js
 
 
 
@@ -7556,7 +7563,7 @@ class Timer extends Metric {
     }
 }
 //# sourceMappingURL=Timer.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/requestStateEmittingHandler.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/requestStateEmittingHandler.js
 
 
 
@@ -7599,7 +7606,7 @@ const createRequestStateEmittingHandler = (requestStateEventTarget) => (next) =>
 });
 const requestStateEventTargetFactory = Injectable("requestStateEventTarget", () => new TypedEventTarget());
 //# sourceMappingURL=requestStateEmittingHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/clients/grpcHandler.js
+;// ./node_modules/@snap/camera-kit/dist/clients/grpcHandler.js
 
 
 
@@ -7696,7 +7703,7 @@ function isUnaryOutputOk(value) {
     return value.status === grpc_web_client_umd.grpc.Code.OK;
 }
 //# sourceMappingURL=grpcHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/clients/createTsProtoClient.js
+;// ./node_modules/@snap/camera-kit/dist/clients/createTsProtoClient.js
 
 
 function messageClass(message, data) {
@@ -7734,8 +7741,8 @@ function createTsProtoClient(serviceDefinition, handler) {
 }
 //# sourceMappingURL=createTsProtoClient.js.map
 // EXTERNAL MODULE: ./node_modules/browser-headers/dist/browser-headers.umd.js
-var browser_headers_umd = __webpack_require__(84);
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/unionBy.js
+var browser_headers_umd = __webpack_require__(18);
+;// ./node_modules/@snap/camera-kit/dist/common/unionBy.js
 function unionBy(iteratee, ...arrays) {
     const throwIterateeError = () => {
         throw new Error("Iteratee must be a function or a valid property key of the item");
@@ -7752,7 +7759,7 @@ function unionBy(iteratee, ...arrays) {
     return Array.from(seen.values());
 }
 //# sourceMappingURL=unionBy.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/common/ruid.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/common/ruid.js
 
 const ruid_protobufPackage = "snapchat.common";
 var Ruid_Type;
@@ -7843,7 +7850,7 @@ const Ruid = {
     },
 };
 //# sourceMappingURL=ruid.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/google/protobuf/wrappers.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/google/protobuf/wrappers.js
 
 const wrappers_protobufPackage = "google.protobuf";
 function createBaseDoubleValue() {
@@ -8225,7 +8232,7 @@ const BytesValue = {
     },
 };
 //# sourceMappingURL=wrappers.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/benchmark.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/benchmark.js
 
 
 const benchmark_protobufPackage = "snapchat.cdp.cof";
@@ -8432,7 +8439,7 @@ function benchmark_fromTimestamp(t) {
     return new globalThis.Date(millis);
 }
 //# sourceMappingURL=benchmark.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/config_request.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/config_request.js
 
 
 
@@ -9178,7 +9185,7 @@ const DecoderEncoderAvailablity = {
     },
 };
 //# sourceMappingURL=config_request.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/common/value.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/common/value.js
 
 
 const value_protobufPackage = "snapchat.common";
@@ -9478,7 +9485,7 @@ const Value = {
     },
 };
 //# sourceMappingURL=value.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/config_result.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/config_result.js
 
 
 const config_result_protobufPackage = "snapchat.cdp.cof";
@@ -10698,7 +10705,7 @@ const ClientTargetingExpression_PropertyMetadata = {
     },
 };
 //# sourceMappingURL=config_result.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/config_response.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/config_response.js
 
 
 
@@ -10931,7 +10938,7 @@ const ConfigTargetingResponse = {
     },
 };
 //# sourceMappingURL=config_response.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/debug_info.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/debug_info.js
 
 const debug_info_protobufPackage = "snapchat.cdp.cof";
 var AbStep;
@@ -11127,7 +11134,7 @@ const DebugTrace = {
     },
 };
 //# sourceMappingURL=debug_info.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/content/media_reference.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/content/media_reference.js
 
 const media_reference_protobufPackage = "snapchat.content";
 var VideoDescription_MediaQualityType;
@@ -11350,7 +11357,7 @@ const MediaReference = {
     },
 };
 //# sourceMappingURL=media_reference.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/snapdoc/capture_characteristics.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/snapdoc/capture_characteristics.js
 
 const capture_characteristics_protobufPackage = "snapchat.snapdoc";
 function createBaseCaptureCharacteristics() {
@@ -11407,7 +11414,7 @@ const CaptureCharacteristics = {
     },
 };
 //# sourceMappingURL=capture_characteristics.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/snapdoc/media_id.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/snapdoc/media_id.js
 
 const media_id_protobufPackage = "snapchat.snapdoc";
 function createBaseMediaId() {
@@ -11453,7 +11460,7 @@ const MediaId = {
     },
 };
 //# sourceMappingURL=media_id.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/snapdoc/media.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/snapdoc/media.js
 
 
 
@@ -12743,7 +12750,7 @@ const DreamsMetadata = {
     },
 };
 //# sourceMappingURL=media.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/billboard_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/billboard_provided_signals.js
 
 const billboard_provided_signals_protobufPackage = "snapchat.cdp.cof";
 function createBaseBillboardSignals() {
@@ -13355,7 +13362,7 @@ const BillboardSignals = {
     },
 };
 //# sourceMappingURL=billboard_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/bolt_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/bolt_provided_signals.js
 
 const bolt_provided_signals_protobufPackage = "snapchat.cdp.cof";
 function createBaseBoltSignals() {
@@ -13434,7 +13441,7 @@ const BoltSignals = {
     },
 };
 //# sourceMappingURL=bolt_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/camera_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/camera_provided_signals.js
 
 const camera_provided_signals_protobufPackage = "snapchat.cdp.cof";
 var CameraDirection;
@@ -13674,7 +13681,7 @@ const CameraSignals = {
     },
 };
 //# sourceMappingURL=camera_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/cognac_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/cognac_provided_signals.js
 
 const cognac_provided_signals_protobufPackage = "snapchat.cdp.cof";
 function createBaseCognacSignals() {
@@ -13720,7 +13727,7 @@ const CognacSignals = {
     },
 };
 //# sourceMappingURL=cognac_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/content_manager_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/content_manager_provided_signals.js
 
 const content_manager_provided_signals_protobufPackage = "snapchat.cdp.cof";
 var LegacyMushroomContentType;
@@ -13832,7 +13839,7 @@ const ContentManagerSignals = {
     },
 };
 //# sourceMappingURL=content_manager_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/creative_tools_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/creative_tools_provided_signals.js
 
 const creative_tools_provided_signals_protobufPackage = "snapchat.cdp.cof";
 function createBaseCreativeToolsSignals() {
@@ -13889,7 +13896,7 @@ const CreativeToolsSignals = {
     },
 };
 //# sourceMappingURL=creative_tools_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/discover_feed_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/discover_feed_provided_signals.js
 
 const discover_feed_provided_signals_protobufPackage = "snapchat.cdp.cof";
 function createBaseDiscoverFeedSignals() {
@@ -13979,7 +13986,7 @@ const DiscoverFeedSignals_DiscoverFeedSectionCacheInfo = {
     },
 };
 //# sourceMappingURL=discover_feed_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/lenses_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/lenses_provided_signals.js
 
 const lenses_provided_signals_protobufPackage = "snapchat.cdp.cof";
 function createBaseLensesSignals() {
@@ -14047,7 +14054,7 @@ const LensesSignals = {
     },
 };
 //# sourceMappingURL=lenses_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/mdp_media_attribution.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/mdp_media_attribution.js
 
 const mdp_media_attribution_protobufPackage = "snapchat.cdp.cof";
 function createBaseMdpMediaAttribution() {
@@ -14104,7 +14111,7 @@ const MdpMediaAttribution = {
     },
 };
 //# sourceMappingURL=mdp_media_attribution.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/media_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/media_provided_signals.js
 
 const media_provided_signals_protobufPackage = "snapchat.cdp.cof";
 var MediaType;
@@ -14170,7 +14177,7 @@ const MediaSignals = {
     },
 };
 //# sourceMappingURL=media_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/opera_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/opera_provided_signals.js
 
 const opera_provided_signals_protobufPackage = "snapchat.cdp.cof";
 function createBaseOperaSignals() {
@@ -14238,7 +14245,7 @@ const OperaSignals = {
     },
 };
 //# sourceMappingURL=opera_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/perception_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/perception_provided_signals.js
 
 const perception_provided_signals_protobufPackage = "snapchat.cdp.cof";
 function createBasePerceptionSignals() {
@@ -14284,7 +14291,7 @@ const PerceptionSignals = {
     },
 };
 //# sourceMappingURL=perception_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/recipients_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/recipients_provided_signals.js
 
 const recipients_provided_signals_protobufPackage = "snapchat.cdp.cof";
 function createBaseRecipientsSignals() {
@@ -14330,7 +14337,7 @@ const RecipientsSignals = {
     },
 };
 //# sourceMappingURL=recipients_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/routing_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/routing_provided_signals.js
 
 const routing_provided_signals_protobufPackage = "snapchat.cdp.cof";
 function createBaseRoutingSignals() {
@@ -14376,7 +14383,7 @@ const RoutingSignals = {
     },
 };
 //# sourceMappingURL=routing_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/snap_kit_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/snap_kit_provided_signals.js
 
 const snap_kit_provided_signals_protobufPackage = "snapchat.cdp.cof";
 function createBaseSnapKitSignals() {
@@ -14422,7 +14429,7 @@ const SnapKitSignals = {
     },
 };
 //# sourceMappingURL=snap_kit_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/upload_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/upload_provided_signals.js
 
 const upload_provided_signals_protobufPackage = "snapchat.cdp.cof";
 var ChunkUploadPreference;
@@ -14509,7 +14516,7 @@ const UploadSignals = {
     },
 };
 //# sourceMappingURL=upload_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/feature_provided_signals.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/feature_provided_signals.js
 
 
 
@@ -15165,7 +15172,7 @@ const FeatureProvidedSignals_EdgeSignalsEntry = {
     },
 };
 //# sourceMappingURL=feature_provided_signals.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/circumstance_service.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/cdp/cof/circumstance_service.js
 
 
 
@@ -16974,7 +16981,7 @@ class GrpcWebError extends globalThis.Error {
     }
 }
 //# sourceMappingURL=circumstance_service.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/responseCachingHandler.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/responseCachingHandler.js
 
 
 
@@ -17058,12 +17065,12 @@ const createResponseCachingHandler = (cache, resolveKey, strategy) => {
     });
 };
 //# sourceMappingURL=responseCachingHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/persistence/Persistence.js
+;// ./node_modules/@snap/camera-kit/dist/persistence/Persistence.js
 const isValidKey = (key) => typeof key === "string" || typeof key === "number";
 class Persistence {
 }
 //# sourceMappingURL=Persistence.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/persistence/IndexedDBPersistence.js
+;// ./node_modules/@snap/camera-kit/dist/persistence/IndexedDBPersistence.js
 
 
 function wrapRequest(request) {
@@ -17191,7 +17198,7 @@ class IndexedDBPersistence {
     }
 }
 //# sourceMappingURL=IndexedDBPersistence.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/persistence/ExpiringPersistence.js
+;// ./node_modules/@snap/camera-kit/dist/persistence/ExpiringPersistence.js
 
 
 const ExpiringPersistence_logger = getLogger("ExpiringPersistence");
@@ -17256,7 +17263,7 @@ class ExpiringPersistence {
     }
 }
 //# sourceMappingURL=ExpiringPersistence.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/filter.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/filter.js
 
 
 function filter(predicate, thisArg) {
@@ -17266,7 +17273,7 @@ function filter(predicate, thisArg) {
     });
 }
 //# sourceMappingURL=filter.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/pageVisibility.js
+;// ./node_modules/@snap/camera-kit/dist/common/pageVisibility.js
 
 class PageVisibility {
     constructor() {
@@ -17319,7 +17326,7 @@ class PageVisibility {
 }
 const pageVisibilityFactory = Injectable("pageVisibility", () => new PageVisibility());
 //# sourceMappingURL=pageVisibility.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/blizzard/cameraKitEvents.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/blizzard/cameraKitEvents.js
 
 const ServerEventBatch = {
     encode(message, writer = new BinaryWriter()) {
@@ -18476,7 +18483,7 @@ var KitType;
     KitType[KitType["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
 })(KitType || (KitType = {}));
 //# sourceMappingURL=cameraKitEvents.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/mappingHandler.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/mappingHandler.js
 
 const createMappingHandler = (map, pageVisibility, maxMapConcurrency = Number.POSITIVE_INFINITY) => {
     const buffer = [];
@@ -18521,7 +18528,7 @@ const createMappingHandler = (map, pageVisibility, maxMapConcurrency = Number.PO
     };
 };
 //# sourceMappingURL=mappingHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/batchingHandler.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/batchingHandler.js
 
 
 const createBatchingHandler = ({ batchReduce, isBatchComplete, maxBatchAge, pageVisibility, }) => {
@@ -18567,7 +18574,7 @@ const createBatchingHandler = ({ batchReduce, isBatchComplete, maxBatchAge, page
     });
 };
 //# sourceMappingURL=batchingHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/rateLimitingHandler.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/rateLimitingHandler.js
 
 
 const delay = (duration) => new Promise((resolve) => setTimeout(resolve, duration));
@@ -18589,7 +18596,7 @@ const createRateLimitingHandler = (duration, pageVisibility) => {
     };
 };
 //# sourceMappingURL=rateLimitingHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/operational/Count.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/operational/Count.js
 
 function isCountMetric(value) {
     var _a;
@@ -18621,7 +18628,7 @@ class Count extends Metric {
     }
 }
 //# sourceMappingURL=Count.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/clients/metricsClient.js
+;// ./node_modules/@snap/camera-kit/dist/clients/metricsClient.js
 
 
 
@@ -18718,7 +18725,7 @@ const metricsClientFactory = Injectable("metricsClient", [externalMetricsSubject
     return metrics;
 });
 //# sourceMappingURL=metricsClient.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/remote-configuration/cofHandler.js
+;// ./node_modules/@snap/camera-kit/dist/remote-configuration/cofHandler.js
 
 
 
@@ -18802,7 +18809,7 @@ const cofHandlerFactory = Injectable("cofHandler", [configurationToken, requestS
     }))).handler);
 });
 //# sourceMappingURL=cofHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/remote-configuration/remoteConfiguration.js
+;// ./node_modules/@snap/camera-kit/dist/remote-configuration/remoteConfiguration.js
 
 
 
@@ -18872,7 +18879,7 @@ const remoteConfigurationFactory = Injectable("remoteConfiguration", [configurat
     return remoteConfig;
 });
 //# sourceMappingURL=remoteConfiguration.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens/assets/deviceDependentAssetLoader.js
+;// ./node_modules/@snap/camera-kit/dist/lens/assets/deviceDependentAssetLoader.js
 
 
 
@@ -18882,6 +18889,8 @@ const remoteConfigurationFactory = Injectable("remoteConfiguration", [configurat
 
 
 
+
+const deviceDependentAssetLoader_logger = getLogger("deviceDependentAssetLoader");
 const hasStringValue = (value) => {
     return typeguards_isRecord(value) && typeguards_isString(value.stringValue);
 };
@@ -18911,6 +18920,7 @@ const deviceDependentAssetLoaderFactory = Injectable("deviceDependentAssetLoader
                 }
                 if (!isAssetConfig(assetConfig))
                     throw loadingFailed("COF config malformed (missing URL)");
+                deviceDependentAssetLoader_logger.info(`COF request for ${assetId}. url: ${assetConfig.url}. checksum: ${assetConfig.checksum}.`);
                 return assetConfig;
             }), mergeMap(({ url, checksum }) => tslib_es6_awaiter(this, void 0, void 0, function* () {
                 const [data, response] = yield assetHandler(url, withRequestPriority({ cache: "force-cache" }, lowPriority));
@@ -18922,7 +18932,7 @@ const deviceDependentAssetLoaderFactory = Injectable("deviceDependentAssetLoader
     };
 });
 //# sourceMappingURL=deviceDependentAssetLoader.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens/assets/staticAssetLoader.js
+;// ./node_modules/@snap/camera-kit/dist/lens/assets/staticAssetLoader.js
 
 
 
@@ -18944,7 +18954,7 @@ const staticAssetLoaderFactory = Injectable("staticAssetLoader", [defaultFetchHa
     });
 });
 //# sourceMappingURL=staticAssetLoader.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens-core-module/lensCoreError.js
+;// ./node_modules/@snap/camera-kit/dist/lens-core-module/lensCoreError.js
 
 const lensCoreErrorValue = {
     LensDeserialization: 0,
@@ -18980,7 +18990,7 @@ function wrapLensCoreError(unknownError, isFrameError) {
     return error;
 }
 //# sourceMappingURL=lensCoreError.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens-core-module/lensCore.js
+;// ./node_modules/@snap/camera-kit/dist/lens-core-module/lensCore.js
 
 
 const promisifiableMethods = {
@@ -19077,7 +19087,7 @@ const createLensCore = (lensCoreModule) => {
     });
 };
 //# sourceMappingURL=lensCore.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/mergeAll.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/mergeAll.js
 
 
 function mergeAll(concurrent) {
@@ -19085,13 +19095,13 @@ function mergeAll(concurrent) {
     return mergeMap(identity_identity, concurrent);
 }
 //# sourceMappingURL=mergeAll.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/isScheduler.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/isScheduler.js
 
 function isScheduler(value) {
     return value && isFunction(value.schedule);
 }
 //# sourceMappingURL=isScheduler.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/args.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/args.js
 
 
 function last(arr) {
@@ -19107,7 +19117,7 @@ function popNumber(args, defaultValue) {
     return typeof last(args) === 'number' ? args.pop() : defaultValue;
 }
 //# sourceMappingURL=args.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/observable/merge.js
+;// ./node_modules/rxjs/dist/esm5/internal/observable/merge.js
 
 
 
@@ -19131,7 +19141,7 @@ function merge() {
                 mergeAll(concurrent)(from_from(sources, scheduler));
 }
 //# sourceMappingURL=merge.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/mapOneOrManyArgs.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/mapOneOrManyArgs.js
 
 
 var isArray = Array.isArray;
@@ -19142,7 +19152,7 @@ function mapOneOrManyArgs_mapOneOrManyArgs(fn) {
     return map(function (args) { return callOrApply(fn, args); });
 }
 //# sourceMappingURL=mapOneOrManyArgs.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/observable/fromEvent.js
+;// ./node_modules/rxjs/dist/esm5/internal/observable/fromEvent.js
 
 
 
@@ -19202,7 +19212,7 @@ function isEventTarget(target) {
     return isFunction(target.addEventListener) && isFunction(target.removeEventListener);
 }
 //# sourceMappingURL=fromEvent.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/tap.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/tap.js
 
 
 
@@ -19243,7 +19253,7 @@ function tap(observerOrNext, error, complete) {
             identity_identity;
 }
 //# sourceMappingURL=tap.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/loadScript.js
+;// ./node_modules/@snap/camera-kit/dist/common/loadScript.js
 
 function loadScript(scriptUri) {
     return new Promise((resolve, reject) => {
@@ -19257,7 +19267,7 @@ function loadScript(scriptUri) {
     });
 }
 //# sourceMappingURL=loadScript.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/handlers/customLensCoreHandler.js
+;// ./node_modules/@snap/camera-kit/dist/handlers/customLensCoreHandler.js
 
 const createCustomLensCoreHandler = () => {
     return (next) => (input, init) => {
@@ -19270,10 +19280,10 @@ const createCustomLensCoreHandler = () => {
     };
 };
 //# sourceMappingURL=customLensCoreHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/wasm-feature-detect/dist/esm/index.js
+;// ./node_modules/wasm-feature-detect/dist/esm/index.js
 const bigInt=()=>(async e=>{try{return(await WebAssembly.instantiate(e)).instance.exports.b(BigInt(0))===BigInt(0)}catch(e){return!1}})(new Uint8Array([0,97,115,109,1,0,0,0,1,6,1,96,1,126,1,126,3,2,1,0,7,5,1,1,98,0,0,10,6,1,4,0,32,0,11])),bulkMemory=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,5,3,1,0,1,10,14,1,12,0,65,0,65,0,65,0,252,10,0,0,11])),exceptions=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,10,8,1,6,0,6,64,25,11,11])),exceptionsFinal=()=>(async()=>{try{return new WebAssembly.Module(Uint8Array.from(atob("AGFzbQEAAAABBAFgAAADAgEAChABDgACaR9AAQMAAAsACxoL"),(e=>e.codePointAt(0)))),!0}catch(e){return!1}})(),extendedConst=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,5,3,1,0,1,11,9,1,0,65,1,65,2,106,11,0])),gc=()=>(async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,5,1,95,1,120,0])))(),jsStringBuiltins=()=>(async()=>{try{return await WebAssembly.instantiate(Uint8Array.from(atob("AGFzbQEAAAABBgFgAW8BfwIXAQ53YXNtOmpzLXN0cmluZwR0ZXN0AAA="),(e=>e.codePointAt(0))),{},{builtins:["js-string"]}),!0}catch(e){return!1}})(),jspi=()=>(async()=>"Suspending"in WebAssembly)(),memory64=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,5,3,1,4,1])),multiMemory=()=>(async()=>{try{return new WebAssembly.Module(new Uint8Array([0,97,115,109,1,0,0,0,5,5,2,0,0,0,0])),!0}catch(e){return!1}})(),multiValue=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,6,1,96,0,2,127,127,3,2,1,0,10,8,1,6,0,65,0,65,0,11])),mutableGlobals=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,2,8,1,1,97,1,98,3,127,1,6,6,1,127,1,65,0,11,7,5,1,1,97,3,1])),referenceTypes=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,10,7,1,5,0,208,112,26,11])),esm_relaxedSimd=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,5,1,96,0,1,123,3,2,1,0,10,15,1,13,0,65,1,253,15,65,2,253,15,253,128,2,11])),saturatedFloatToInt=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,10,12,1,10,0,67,0,0,0,0,252,0,26,11])),signExtensions=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,10,8,1,6,0,65,0,192,26,11])),esm_simd=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,5,1,96,0,1,123,3,2,1,0,10,10,1,8,0,65,0,253,15,253,98,11])),streamingCompilation=()=>(async()=>"compileStreaming"in WebAssembly)(),tailCall=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,10,6,1,4,0,18,0,11])),threads=()=>(async e=>{try{return"undefined"!=typeof MessageChannel&&(new MessageChannel).port1.postMessage(new SharedArrayBuffer(1)),WebAssembly.validate(e)}catch(e){return!1}})(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,5,4,1,3,1,1,10,11,1,9,0,65,0,254,16,2,0,26,11])),typeReflection=()=>(async()=>"Function"in WebAssembly)(),typedFunctionReferences=()=>(async()=>{try{return new WebAssembly.Module(Uint8Array.from(atob("AGFzbQEAAAABEANgAX8Bf2ABZAABf2AAAX8DBAMBAAIJBQEDAAEBChwDCwBBCkEqIAAUAGoLBwAgAEEBagsGANIBEAAL"),(e=>e.codePointAt(0)))),!0}catch(e){return!1}})();
 
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/platform/platformCapabilities.js
+;// ./node_modules/@snap/camera-kit/dist/platform/platformCapabilities.js
 
 
 
@@ -19372,7 +19382,7 @@ const getPlatformCapabilities = memoize_memoize(function getPlatformCapabilities
     });
 });
 //# sourceMappingURL=platformCapabilities.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens-core-module/loader/bootstrapURLs.js
+;// ./node_modules/@snap/camera-kit/dist/lens-core-module/loader/bootstrapURLs.js
 
 
 
@@ -19416,7 +19426,7 @@ function getRequiredBootstrapURLs(endpointOverride) {
     });
 }
 //# sourceMappingURL=bootstrapURLs.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens-core-module/loader/lensCoreFactory.js
+;// ./node_modules/@snap/camera-kit/dist/lens-core-module/loader/lensCoreFactory.js
 
 
 
@@ -19488,7 +19498,7 @@ const lensCoreFactory = Injectable("lensCore", [defaultFetchHandlerFactory.token
     return createLensCore(lensCore);
 }));
 //# sourceMappingURL=lensCoreFactory.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/validate.js
+;// ./node_modules/@snap/camera-kit/dist/common/validate.js
 
 const ordinalSuffixMap = {
     1: "st",
@@ -19546,7 +19556,7 @@ function validate_validate(...guards) {
     };
 }
 //# sourceMappingURL=validate.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/logger/errorLoggingDecorator.js
+;// ./node_modules/@snap/camera-kit/dist/logger/errorLoggingDecorator.js
 function errorLoggingDecorator(logger) {
     const handleError = (error) => logger.error(error);
     return function validator(target, _context) {
@@ -19566,7 +19576,7 @@ function errorLoggingDecorator(logger) {
     };
 }
 //# sourceMappingURL=errorLoggingDecorator.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/assertions.js
+;// ./node_modules/@snap/camera-kit/dist/common/assertions.js
 function assertUnreachable(_) {
     throw new Error("Reached unreachable code at runtime.");
 }
@@ -19581,7 +19591,7 @@ function assert(condition, error = "Assertion failed") {
     }
 }
 //# sourceMappingURL=assertions.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens/Lens.js
+;// ./node_modules/@snap/camera-kit/dist/lens/Lens.js
 
 
 
@@ -19656,12 +19666,12 @@ function toPublicLens({ id, groupId, name, content, vendorData, cameraFacingPref
     };
 }
 //# sourceMappingURL=Lens.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/metricsEventTarget.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/metricsEventTarget.js
 
 
 const metricsEventTargetFactory = Injectable("metricsEventTarget", () => new TypedEventTarget());
 //# sourceMappingURL=metricsEventTarget.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens/assets/LensAssetRepository.js
+;// ./node_modules/@snap/camera-kit/dist/lens/assets/LensAssetRepository.js
 
 
 
@@ -19801,7 +19811,7 @@ const lensAssetRepositoryFactory = Injectable("lensAssetRepository", [
     [lensCore.AssetType.Static, ["Static", staticAssetLoader]],
 ]), metrics, requestStateEventTarget));
 //# sourceMappingURL=LensAssetRepository.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/export.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/export.js
 
 
 const export_protobufPackage = "com.snap.camerakit.v3";
@@ -20382,7 +20392,7 @@ const Envelope = {
     },
 };
 //# sourceMappingURL=export.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens/LensSource.js
+;// ./node_modules/@snap/camera-kit/dist/lens/LensSource.js
 
 
 
@@ -20401,7 +20411,7 @@ function loadLensesFromSources(sources, groupId, lensId) {
     });
 }
 //# sourceMappingURL=LensSource.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens/LensRepository.js
+;// ./node_modules/@snap/camera-kit/dist/lens/LensRepository.js
 
 
 
@@ -20549,7 +20559,7 @@ const lensRepositoryFactory = Injectable("LensRepository", [
     return new LensRepository(lensFetchHandler, lensSources, lensAssetRepository);
 });
 //# sourceMappingURL=LensRepository.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/observable/of.js
+;// ./node_modules/rxjs/dist/esm5/internal/observable/of.js
 
 
 function of() {
@@ -20561,7 +20571,7 @@ function of() {
     return from_from(args, scheduler);
 }
 //# sourceMappingURL=of.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/takeUntil.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/takeUntil.js
 
 
 
@@ -20573,13 +20583,13 @@ function takeUntil(notifier) {
     });
 }
 //# sourceMappingURL=takeUntil.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/state-management/dist/types.js
+;// ./node_modules/@snap/state-management/dist/types.js
 // `Object.entries` does preserve key types.
 const types_entries = (o) => Object.entries(o);
 // `Object.fromEntries` does not preserve key types.
 const types_fromEntries = (entries) => Object.fromEntries(entries);
 
-;// CONCATENATED MODULE: ./node_modules/@snap/state-management/dist/actions.js
+;// ./node_modules/@snap/state-management/dist/actions.js
 
 
 /**
@@ -20638,7 +20648,7 @@ function isAction(action, name) {
     return action.name === name;
 }
 
-;// CONCATENATED MODULE: ./node_modules/@snap/state-management/dist/states.js
+;// ./node_modules/@snap/state-management/dist/states.js
 
 
 /**
@@ -20683,7 +20693,7 @@ function isState(state, name) {
     return state.name === name;
 }
 
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/BehaviorSubject.js
+;// ./node_modules/rxjs/dist/esm5/internal/BehaviorSubject.js
 
 
 var BehaviorSubject = (function (_super) {
@@ -20720,7 +20730,7 @@ var BehaviorSubject = (function (_super) {
 }(Subject));
 
 //# sourceMappingURL=BehaviorSubject.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/withLatestFrom.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/withLatestFrom.js
 
 
 
@@ -20760,7 +20770,7 @@ function withLatestFrom() {
     });
 }
 //# sourceMappingURL=withLatestFrom.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/observable/never.js
+;// ./node_modules/rxjs/dist/esm5/internal/observable/never.js
 
 
 var NEVER = new Observable_Observable(noop);
@@ -20768,13 +20778,13 @@ function never() {
     return NEVER;
 }
 //# sourceMappingURL=never.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/concatAll.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/concatAll.js
 
 function concatAll() {
     return mergeAll(1);
 }
 //# sourceMappingURL=concatAll.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/observable/concat.js
+;// ./node_modules/rxjs/dist/esm5/internal/observable/concat.js
 
 
 
@@ -20786,7 +20796,7 @@ function concat() {
     return concatAll()(from_from(args, args_popScheduler(args)));
 }
 //# sourceMappingURL=concat.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/startWith.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/startWith.js
 
 
 
@@ -20801,7 +20811,7 @@ function startWith() {
     });
 }
 //# sourceMappingURL=startWith.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/observable/race.js
+;// ./node_modules/rxjs/dist/esm5/internal/observable/race.js
 
 
 
@@ -20834,7 +20844,7 @@ function raceInit(sources) {
     };
 }
 //# sourceMappingURL=race.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/raceWith.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/raceWith.js
 
 
 
@@ -20851,7 +20861,7 @@ function raceWith() {
         });
 }
 //# sourceMappingURL=raceWith.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/state-management/dist/state-machine.js
+;// ./node_modules/@snap/state-management/dist/state-machine.js
 
 /**
  * A StateMachine takes a finite set of both Action and State types, representing the allowed states of the machine and
@@ -21017,7 +21027,7 @@ function dispatch(stateMachine) {
     });
 }
 
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/launch_params.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/launch_params.js
 
 const launch_params_protobufPackage = "snapchat.lenses";
 function createBaseLaunchParams() {
@@ -21063,7 +21073,7 @@ const LaunchParams = {
     },
 };
 //# sourceMappingURL=launch_params.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/geopoint.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/geopoint.js
 
 const geopoint_protobufPackage = "snapchat.lenses";
 function createBaseGeopoint() {
@@ -21120,7 +21130,7 @@ const Geopoint = {
     },
 };
 //# sourceMappingURL=geopoint.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/geocircle.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/geocircle.js
 
 
 const geocircle_protobufPackage = "snapchat.lenses";
@@ -21180,7 +21190,7 @@ const Geocircle = {
     },
 };
 //# sourceMappingURL=geocircle.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/lures.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/lures.js
 
 
 const lures_protobufPackage = "snapchat.lenses";
@@ -21253,7 +21263,7 @@ const Lures = {
     },
 };
 //# sourceMappingURL=lures.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/persistent_store.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/persistent_store.js
 
 const persistent_store_protobufPackage = "snapchat.lenses";
 function createBasePersistentStore() {
@@ -21299,7 +21309,7 @@ const PersistentStore = {
     },
 };
 //# sourceMappingURL=persistent_store.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/snappable.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/snappable.js
 
 const snappable_protobufPackage = "snapchat.lenses.snappable";
 var EncryptionData_EncryptionScheme;
@@ -22495,7 +22505,7 @@ const SnappableEncryptedKey = {
     },
 };
 //# sourceMappingURL=snappable.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/user_data.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/user_data.js
 
 
 const user_data_protobufPackage = "snapchat.lenses";
@@ -22910,7 +22920,7 @@ function user_data_fromTimestamp(t) {
     return new globalThis.Date(millis);
 }
 //# sourceMappingURL=user_data.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/launchdata.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/launchdata.js
 
 
 
@@ -23343,7 +23353,7 @@ function launchdata_fromTimestamp(t) {
     return new globalThis.Date(millis);
 }
 //# sourceMappingURL=launchdata.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens/LensLaunchData.js
+;// ./node_modules/@snap/camera-kit/dist/lens/LensLaunchData.js
 
 
 
@@ -23427,7 +23437,7 @@ function encodeLensLaunchParams(launchParams) {
     return { data: new TextEncoder().encode(JSON.stringify(launchParams)) };
 }
 //# sourceMappingURL=LensLaunchData.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/transforms/Transform2D.js
+;// ./node_modules/@snap/camera-kit/dist/transforms/Transform2D.js
 class Transform2D {
     constructor(matrix) {
         this.matrix = matrix;
@@ -23441,7 +23451,7 @@ function isTransform2D(value) {
     return value instanceof Transform2D;
 }
 //# sourceMappingURL=Transform2D.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/media-sources/CameraKitSource.js
+;// ./node_modules/@snap/camera-kit/dist/media-sources/CameraKitSource.js
 
 
 
@@ -23482,7 +23492,7 @@ let CameraKitSource_CameraKitSource = (() => {
                 this.subscriber = subscriber;
                 this.deviceInfo = Object.assign(Object.assign({}, defaultDeviceInfo), copyDefinedProperties(deviceInfo));
             }
-            attach(lensCore, reportError) {
+            attach(lensCore, frameEvents, reportError) {
                 return tslib_es6_awaiter(this, void 0, void 0, function* () {
                     if (this.lensCore) {
                         throw new Error("This CameraKitSource has already been attached to this CameraKitSession " +
@@ -23503,7 +23513,7 @@ let CameraKitSource_CameraKitSource = (() => {
                     yield lensCore.setFPSLimit({ fps });
                     yield lensCore.setRenderSize({ mode: "matchInputResolution" });
                     if (this.subscriber.onAttach)
-                        yield this.subscriber.onAttach(this, lensCore, reportError);
+                        yield this.subscriber.onAttach(this, lensCore, reportError, frameEvents);
                 });
             }
             copy(deviceInfo = {}) {
@@ -23538,7 +23548,7 @@ let CameraKitSource_CameraKitSource = (() => {
 })();
 
 //# sourceMappingURL=CameraKitSource.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/scheduler/Action.js
+;// ./node_modules/rxjs/dist/esm5/internal/scheduler/Action.js
 
 
 var Action = (function (_super) {
@@ -23554,7 +23564,7 @@ var Action = (function (_super) {
 }(Subscription));
 
 //# sourceMappingURL=Action.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/scheduler/intervalProvider.js
+;// ./node_modules/rxjs/dist/esm5/internal/scheduler/intervalProvider.js
 
 var intervalProvider = {
     setInterval: function (handler, timeout) {
@@ -23575,7 +23585,7 @@ var intervalProvider = {
     delegate: undefined,
 };
 //# sourceMappingURL=intervalProvider.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/scheduler/AsyncAction.js
+;// ./node_modules/rxjs/dist/esm5/internal/scheduler/AsyncAction.js
 
 
 
@@ -23666,7 +23676,7 @@ var AsyncAction = (function (_super) {
 }(Action));
 
 //# sourceMappingURL=AsyncAction.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/Scheduler.js
+;// ./node_modules/rxjs/dist/esm5/internal/Scheduler.js
 
 var Scheduler = (function () {
     function Scheduler(schedulerActionCtor, now) {
@@ -23683,7 +23693,7 @@ var Scheduler = (function () {
 }());
 
 //# sourceMappingURL=Scheduler.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/scheduler/AsyncScheduler.js
+;// ./node_modules/rxjs/dist/esm5/internal/scheduler/AsyncScheduler.js
 
 
 var AsyncScheduler = (function (_super) {
@@ -23720,13 +23730,13 @@ var AsyncScheduler = (function (_super) {
 }(Scheduler));
 
 //# sourceMappingURL=AsyncScheduler.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/scheduler/async.js
+;// ./node_modules/rxjs/dist/esm5/internal/scheduler/async.js
 
 
 var asyncScheduler = new AsyncScheduler(AsyncAction);
 var async_async = asyncScheduler;
 //# sourceMappingURL=async.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/buffer.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/buffer.js
 
 
 
@@ -23749,7 +23759,7 @@ function buffer(closingNotifier) {
     });
 }
 //# sourceMappingURL=buffer.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/debounceTime.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/debounceTime.js
 
 
 
@@ -23794,7 +23804,7 @@ function debounceTime(dueTime, scheduler) {
     });
 }
 //# sourceMappingURL=debounceTime.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/observable-operators/debounceTimeAfter.js
+;// ./node_modules/@snap/camera-kit/dist/observable-operators/debounceTimeAfter.js
 
 function debounceTimeAfter(amount, duration, scheduler = asyncScheduler) {
     return (source) => {
@@ -23817,7 +23827,7 @@ function debounceTimeAfter(amount, duration, scheduler = asyncScheduler) {
     };
 }
 //# sourceMappingURL=debounceTimeAfter.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/media-sources/MediaStreamSource.js
+;// ./node_modules/@snap/camera-kit/dist/media-sources/MediaStreamSource.js
 
 
 
@@ -23958,7 +23968,7 @@ function createMediaStreamSource(stream, options = {}) {
     }, optionsWithDefaults);
 }
 //# sourceMappingURL=MediaStreamSource.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/media-sources/VideoSource.js
+;// ./node_modules/@snap/camera-kit/dist/media-sources/VideoSource.js
 
 
 const VideoSource_defaultOptions = Object.assign(Object.assign({}, defaultDeviceInfo), { trackingData: new ArrayBuffer(0) });
@@ -23971,12 +23981,12 @@ function createVideoSource(video, options = {}) {
     }, {}, options);
 }
 //# sourceMappingURL=VideoSource.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/logger/logEntries.js
+;// ./node_modules/@snap/camera-kit/dist/logger/logEntries.js
 
 
 const logEntriesFactory = Injectable("logEntries", () => resetLogger().asObservable());
 //# sourceMappingURL=logEntries.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/session/LensPerformanceMeasurement.js
+;// ./node_modules/@snap/camera-kit/dist/session/LensPerformanceMeasurement.js
 const getDefaultFrameMetricsState = () => ({
     avgFps: 0,
     averageProcessingTime: 0,
@@ -24040,7 +24050,7 @@ class LensPerformanceMeasurement {
     }
 }
 //# sourceMappingURL=LensPerformanceMeasurement.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/session/LensPerformanceMetrics.js
+;// ./node_modules/@snap/camera-kit/dist/session/LensPerformanceMetrics.js
 
 
 
@@ -24051,26 +24061,30 @@ let LensPerformanceMetrics = (() => {
     let _instanceExtraInitializers = [];
     let _beginMeasurement_decorators;
     return _a = class LensPerformanceMetrics {
-            constructor(lensCore) {
-                this.lensCore = (__runInitializers(this, _instanceExtraInitializers), lensCore);
+            constructor(frameEvents) {
+                this.measurementInstances = (__runInitializers(this, _instanceExtraInitializers), void 0);
                 this.measurementInstances = new Set();
-                this.lensCore
-                    .setOnFrameProcessedCallback({
-                    onFrameProcessed: ({ processingTimeMs }) => {
+                this.subscription = frameEvents.subscribe({
+                    next: (frameEvent) => {
                         try {
                             for (const measurement of this.measurementInstances.values()) {
-                                measurement.update(processingTimeMs);
+                                measurement.update(frameEvent.processingTimeMs);
                             }
                         }
                         catch (error) {
                             LensPerformanceMetrics_logger.error(error);
                         }
                     },
-                })
-                    .catch((error) => LensPerformanceMetrics_logger.error(`Failed registering setOnFrameProcessedCallback with error: ${error.message}`));
+                    error: (error) => {
+                        LensPerformanceMetrics_logger.error(error);
+                    },
+                });
             }
             beginMeasurement() {
                 return new LensPerformanceMeasurement(this.measurementInstances);
+            }
+            destroy() {
+                this.subscription.unsubscribe();
             }
         },
         (() => {
@@ -24080,7 +24094,7 @@ let LensPerformanceMetrics = (() => {
         _a;
 })();
 //# sourceMappingURL=LensPerformanceMetrics.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/exhaustMap.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/exhaustMap.js
 
 
 
@@ -24110,7 +24124,7 @@ function exhaustMap(project, resultSelector) {
     });
 }
 //# sourceMappingURL=exhaustMap.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/switchMap.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/switchMap.js
 
 
 
@@ -24135,7 +24149,7 @@ function switchMap(project, resultSelector) {
     });
 }
 //# sourceMappingURL=switchMap.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/argsArgArrayOrObject.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/argsArgArrayOrObject.js
 var argsArgArrayOrObject_isArray = Array.isArray;
 var getPrototypeOf = Object.getPrototypeOf, objectProto = Object.prototype, getKeys = Object.keys;
 function argsArgArrayOrObject_argsArgArrayOrObject(args) {
@@ -24158,12 +24172,12 @@ function isPOJO(obj) {
     return obj && typeof obj === 'object' && getPrototypeOf(obj) === objectProto;
 }
 //# sourceMappingURL=argsArgArrayOrObject.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/createObject.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/createObject.js
 function createObject_createObject(keys, values) {
     return keys.reduce(function (result, key, i) { return ((result[key] = values[i]), result); }, {});
 }
 //# sourceMappingURL=createObject.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/observable/forkJoin.js
+;// ./node_modules/rxjs/dist/esm5/internal/observable/forkJoin.js
 
 
 
@@ -24211,7 +24225,7 @@ function forkJoin() {
     return resultSelector ? result.pipe(mapOneOrManyArgs_mapOneOrManyArgs(resultSelector)) : result;
 }
 //# sourceMappingURL=forkJoin.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens/LensPersistenceStore.js
+;// ./node_modules/@snap/camera-kit/dist/lens/LensPersistenceStore.js
 
 
 
@@ -24232,7 +24246,7 @@ const lensPersistenceStoreFactory = Injectable("lensPersistenceStore", [lensCore
     return db;
 });
 //# sourceMappingURL=LensPersistenceStore.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/localization.js
+;// ./node_modules/@snap/camera-kit/dist/common/localization.js
 
 function makeTemplate(keys) {
     return (template) => (values) => {
@@ -24855,7 +24869,7 @@ function localizedString(stringId) {
     return allStrings[supportedLocale][stringId];
 }
 //# sourceMappingURL=localization.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/dialog.js
+;// ./node_modules/@snap/camera-kit/dist/common/dialog.js
 
 const stylesCss = `
 dialog {
@@ -25014,7 +25028,7 @@ function showDialog(options) {
     });
 }
 //# sourceMappingURL=dialog.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/hash.js
+;// ./node_modules/@snap/camera-kit/dist/common/hash.js
 const computeHash = (str) => {
     let h1 = 0xdeadbeef;
     let h2 = 0x41c6ce57;
@@ -25028,7 +25042,7 @@ const computeHash = (str) => {
     return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(16);
 };
 //# sourceMappingURL=hash.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/legal/legalPrompt.js
+;// ./node_modules/@snap/camera-kit/dist/legal/legalPrompt.js
 
 
 
@@ -25159,7 +25173,7 @@ const legalPromptFactory = Injectable("legalPrompt", () => {
     };
 });
 //# sourceMappingURL=legalPrompt.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/legal/legalState.js
+;// ./node_modules/@snap/camera-kit/dist/legal/legalState.js
 
 
 
@@ -25260,7 +25274,7 @@ const legalStateFactory = Injectable("legalState", [remoteConfigurationFactory.t
     return legalState;
 });
 //# sourceMappingURL=legalState.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/observable/defer.js
+;// ./node_modules/rxjs/dist/esm5/internal/observable/defer.js
 
 
 function defer(observableFactory) {
@@ -25269,7 +25283,7 @@ function defer(observableFactory) {
     });
 }
 //# sourceMappingURL=defer.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/finalize.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/finalize.js
 
 function finalize(callback) {
     return operate(function (source, subscriber) {
@@ -25282,7 +25296,7 @@ function finalize(callback) {
     });
 }
 //# sourceMappingURL=finalize.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/observable-operators/unsubscribed.js
+;// ./node_modules/@snap/camera-kit/dist/observable-operators/unsubscribed.js
 
 function unsubscribed(callback) {
     return (source) => defer(() => {
@@ -25298,7 +25312,7 @@ function unsubscribed(callback) {
     });
 }
 //# sourceMappingURL=unsubscribed.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens/fetchWatermarkLens.js
+;// ./node_modules/@snap/camera-kit/dist/lens/fetchWatermarkLens.js
 
 
 
@@ -25322,11 +25336,11 @@ const fetchWatermarkLens = Injectable("fetchWatermarkLens", [remoteConfiguration
     });
 });
 //# sourceMappingURL=fetchWatermarkLens.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens/userDataAccessResolver.js
+;// ./node_modules/@snap/camera-kit/dist/lens/userDataAccessResolver.js
 
 const userDataAccessResolverFactory = Injectable("userDataAccessResolver", () => () => "unrestricted");
 //# sourceMappingURL=userDataAccessResolver.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/session/lensState.js
+;// ./node_modules/@snap/camera-kit/dist/session/lensState.js
 
 
 
@@ -25536,7 +25550,7 @@ function extractLoggableData(action) {
     }
 }
 //# sourceMappingURL=lensState.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/session/sessionState.js
+;// ./node_modules/@snap/camera-kit/dist/session/sessionState.js
 
 
 
@@ -25549,7 +25563,7 @@ const createSessionState = () => {
 };
 const sessionStateFactory = Injectable("sessionState", () => createSessionState());
 //# sourceMappingURL=sessionState.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/session/LensKeyboard.js
+;// ./node_modules/@snap/camera-kit/dist/session/LensKeyboard.js
 
 
 
@@ -25661,7 +25675,7 @@ class LensKeyboard {
 }
 const lensKeyboardFactory = Injectable("lensKeyboard", [lensStateFactory.token], (lensState) => new LensKeyboard(lensState));
 //# sourceMappingURL=LensKeyboard.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/session/CameraKitSessionEvents.js
+;// ./node_modules/@snap/camera-kit/dist/session/CameraKitSessionEvents.js
 const isReachable = (_) => false;
 function isPublicLensError(value) {
     if (!(value instanceof Error))
@@ -25677,7 +25691,26 @@ function isPublicLensError(value) {
     }
 }
 //# sourceMappingURL=CameraKitSessionEvents.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/session/CameraKitSession.js
+;// ./node_modules/@snap/camera-kit/dist/session/frameEvents.js
+
+
+
+
+const frameEvents_logger = getLogger("FrameEvents");
+const frameEventsFactory = Injectable("frameEvents", [lensCoreFactory.token], (lensCore) => {
+    const frameEventsSubject = new Subject();
+    lensCore
+        .setOnFrameProcessedCallback({
+        onFrameProcessed: (frameEvent) => {
+            frameEventsSubject.next(frameEvent);
+        },
+    })
+        .catch((error) => frameEvents_logger.error(`Failed registering setOnFrameProcessedCallback with error: ${error.message}`));
+    return frameEventsSubject.asObservable();
+});
+//# sourceMappingURL=frameEvents.js.map
+;// ./node_modules/@snap/camera-kit/dist/session/CameraKitSession.js
+
 
 
 
@@ -25728,11 +25761,12 @@ let CameraKitSession_CameraKitSession = (() => {
     let _setFPSLimit_decorators;
     let _destroy_decorators;
     return _a = class CameraKitSession {
-            constructor(innerKeyboard, lensCore, sessionState, lensState, logEntries, pageVisibility) {
+            constructor(innerKeyboard, lensCore, sessionState, lensState, logEntries, pageVisibility, frameEvents) {
                 this.innerKeyboard = (__runInitializers(this, _instanceExtraInitializers), innerKeyboard);
                 this.lensCore = lensCore;
                 this.sessionState = sessionState;
                 this.lensState = lensState;
+                this.frameEvents = frameEvents;
                 this.events = new TypedEventTarget();
                 this.keyboard = innerKeyboard.toPublicInterface();
                 const outputs = this.lensCore.getOutputCanvases();
@@ -25744,7 +25778,7 @@ let CameraKitSession_CameraKitSession = (() => {
                     live: false,
                     capture: false,
                 };
-                this.metrics = new LensPerformanceMetrics(this.lensCore);
+                this.metrics = new LensPerformanceMetrics(frameEvents);
                 const removeOnHidden = pageVisibility.onPageHidden(() => this.sessionState.dispatch("suspend", this));
                 const removeOnVisible = pageVisibility.onPageVisible(() => this.sessionState.dispatch("resume", this));
                 this.removePageVisibilityHandlers = () => {
@@ -25839,7 +25873,7 @@ let CameraKitSession_CameraKitSession = (() => {
                         live: false,
                         capture: false,
                     };
-                    yield cameraKitSource.attach(this.lensCore, (error) => {
+                    yield cameraKitSource.attach(this.lensCore, this.frameEvents, (error) => {
                         CameraKitSession_logger.error(cameraKitSourceError("Error occurred during source attachment.", error));
                     });
                     this.source = cameraKitSource;
@@ -25870,6 +25904,7 @@ let CameraKitSession_CameraKitSession = (() => {
                     this.removePageVisibilityHandlers();
                     this.sessionState.dispatch("destroy", undefined);
                     this.innerKeyboard.destroy();
+                    this.metrics.destroy();
                 });
             }
             renderTargetToCanvasType(target) {
@@ -25920,9 +25955,10 @@ const cameraKitSessionFactory = Injectable("CameraKitSession", [
     sessionStateFactory.token,
     lensStateFactory.token,
     pageVisibilityFactory.token,
-], (lensCore, logEntries, keyboard, sessionState, lensState, pageVisibility) => new CameraKitSession_CameraKitSession(keyboard, lensCore, sessionState, lensState, logEntries, pageVisibility));
+    frameEventsFactory.token,
+], (lensCore, logEntries, keyboard, sessionState, lensState, pageVisibility, frameEvents) => new CameraKitSession_CameraKitSession(keyboard, lensCore, sessionState, lensState, logEntries, pageVisibility, frameEvents));
 //# sourceMappingURL=CameraKitSession.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens/assets/LensAssetsProvider.js
+;// ./node_modules/@snap/camera-kit/dist/lens/assets/LensAssetsProvider.js
 
 
 
@@ -25943,13 +25979,13 @@ const registerLensAssetsProvider = Injectable("registerLensAssetsProvider", [
     const consecutiveErrorsPerAsset = new Map();
     lensCore.setRemoteAssetsProvider((assetDescriptor) => tslib_es6_awaiter(void 0, void 0, void 0, function* () {
         var _a, _b, _c, _d, _e;
-        const { assetId, assetType, effectId } = assetDescriptor;
+        const { assetId, assetType, lensId } = assetDescriptor;
         try {
             if (((_a = consecutiveErrorsPerAsset.get(assetId)) !== null && _a !== void 0 ? _a : 0) > maxConsecutiveErrors) {
                 throw new Error(`Maximum consecutive asset load errors reached for asset ${assetId}`);
             }
-            const lensId = effectId !== null && effectId !== void 0 ? effectId : (_b = lensState.getState().data) === null || _b === void 0 ? void 0 : _b.id;
-            const lens = lensId ? lensRepository.getLensMetadata(lensId) : undefined;
+            const calculatedLensId = lensId !== null && lensId !== void 0 ? lensId : (_b = lensState.getState().data) === null || _b === void 0 ? void 0 : _b.id;
+            const lens = calculatedLensId ? lensRepository.getLensMetadata(calculatedLensId) : undefined;
             yield lensAssetRepository.loadAsset({
                 assetDescriptor,
                 lens: lens && toPublicLens(lens),
@@ -25975,7 +26011,7 @@ const registerLensAssetsProvider = Injectable("registerLensAssetsProvider", [
     }));
 });
 //# sourceMappingURL=LensAssetsProvider.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/remote_api_spec.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/remote_api_spec.js
 
 const remote_api_spec_protobufPackage = "com.snap.camerakit.v3";
 var RemoteEndpoint_HttpRequestMethod;
@@ -26380,19 +26416,19 @@ const RemoteApiSpecsDefinition = {
     },
 };
 //# sourceMappingURL=remote_api_spec.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/clients/remoteApiSpecsClient.js
+;// ./node_modules/@snap/camera-kit/dist/clients/remoteApiSpecsClient.js
 
 
 
 
 const remoteApiSpecsClientFactory = Injectable("remoteApiSpecsClient", [grpcHandlerFactory.token], (grpcHandler) => createTsProtoClient(RemoteApiSpecsDefinition, grpcHandler));
 //# sourceMappingURL=remoteApiSpecsClient.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/isDate.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/isDate.js
 function isDate_isValidDate(value) {
     return value instanceof Date && !isNaN(value);
 }
 //# sourceMappingURL=isDate.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/observable/timer.js
+;// ./node_modules/rxjs/dist/esm5/internal/observable/timer.js
 
 
 
@@ -26429,7 +26465,7 @@ function timer(dueTime, intervalOrScheduler, scheduler) {
     });
 }
 //# sourceMappingURL=timer.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/retry.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/retry.js
 
 
 
@@ -26499,7 +26535,7 @@ function retry(configOrCount) {
         });
 }
 //# sourceMappingURL=retry.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/uri-handlers/uriRequestProcessor.js
+;// ./node_modules/@snap/camera-kit/dist/uri-handlers/uriRequestProcessor.js
 
 
 function callCancellationHandler(cancellationHandlers, ...keys) {
@@ -26569,7 +26605,7 @@ function createUriRequestProcessor({ uri, lensState, sessionState, createLensReq
     };
 }
 //# sourceMappingURL=uriRequestProcessor.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/uri-handlers/internal-handlers/httpValidators.js
+;// ./node_modules/@snap/camera-kit/dist/uri-handlers/internal-handlers/httpValidators.js
 
 
 
@@ -26682,7 +26718,7 @@ function validateQuery(queryParams, parameters) {
     }
 }
 //# sourceMappingURL=httpValidators.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/uri-handlers/internal-handlers/httpUriHandler.js
+;// ./node_modules/@snap/camera-kit/dist/uri-handlers/internal-handlers/httpUriHandler.js
 
 
 
@@ -26832,7 +26868,7 @@ function mapFetchToLensResponse(response) {
     });
 }
 //# sourceMappingURL=httpUriHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/uri-handlers/UriHandlers.js
+;// ./node_modules/@snap/camera-kit/dist/uri-handlers/UriHandlers.js
 
 
 const SEPARATOR = "://";
@@ -26867,7 +26903,7 @@ const uriHandlersFactory = Injectable("UriHandlers", () => {
     return uriHandlers;
 });
 //# sourceMappingURL=UriHandlers.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/features/remote_api_info.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/camera_kit/v3/features/remote_api_info.js
 
 const remote_api_info_protobufPackage = "com.snap.camerakit.v3.features";
 function createBaseRemoteApiInfo() {
@@ -26913,7 +26949,7 @@ const RemoteApiInfo = {
     },
 };
 //# sourceMappingURL=remote_api_info.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/remote_api/remote_api_service.js
+;// ./node_modules/@snap/camera-kit/dist/generated-proto/pb_schema/lenses/remote_api/remote_api_service.js
 
 const remote_api_service_protobufPackage = "snapchat.lenses";
 var HttpRequestMethod;
@@ -28355,7 +28391,7 @@ const LinkedResource = {
     },
 };
 //# sourceMappingURL=remote_api_service.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/uri-handlers/internal-handlers/remoteApiUriHandler.js
+;// ./node_modules/@snap/camera-kit/dist/uri-handlers/internal-handlers/remoteApiUriHandler.js
 
 
 
@@ -28477,7 +28513,7 @@ function createRemoteApiUriHandler(registeredServices, sessionState, lensState, 
     });
 }
 //# sourceMappingURL=remoteApiUriHandler.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/uri-handlers/uriHandlersRegister.js
+;// ./node_modules/@snap/camera-kit/dist/uri-handlers/uriHandlersRegister.js
 
 
 
@@ -28549,7 +28585,7 @@ const registerUriHandlers = Injectable("registerUriHandlers", [
     }
 });
 //# sourceMappingURL=uriHandlersRegister.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/scanInternals.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/scanInternals.js
 
 function scanInternals(accumulator, seed, hasSeed, emitOnNext, emitBeforeComplete) {
     return function (source, subscriber) {
@@ -28572,14 +28608,14 @@ function scanInternals(accumulator, seed, hasSeed, emitOnNext, emitBeforeComplet
     };
 }
 //# sourceMappingURL=scanInternals.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/scan.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/scan.js
 
 
 function scan(accumulator, seed) {
     return operate(scanInternals(accumulator, seed, arguments.length >= 2, true));
 }
 //# sourceMappingURL=scan.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportGlobalException.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportGlobalException.js
 
 
 
@@ -28662,7 +28698,7 @@ const reportGlobalException = Injectable("reportGlobalException", [logEntriesFac
     };
 });
 //# sourceMappingURL=reportGlobalException.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportSessionException.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportSessionException.js
 
 
 
@@ -28670,7 +28706,7 @@ const reportSessionException = Injectable("reportSessionException", [reportGloba
     globalExceptionReporter.attachLensContext(lensState);
 });
 //# sourceMappingURL=reportSessionException.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/operational/Histogram.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/operational/Histogram.js
 
 class Histogram extends Metric {
     static level(name, level, dimensions = {}) {
@@ -28697,7 +28733,7 @@ class Histogram extends Metric {
     }
 }
 //# sourceMappingURL=Histogram.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportBenchmarks.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportBenchmarks.js
 
 
 
@@ -28725,7 +28761,7 @@ const reportBenchmarks = Injectable("reportBenchmarks", [metricsEventTargetFacto
     }
 }));
 //# sourceMappingURL=reportBenchmarks.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/events/scan.js
+;// ./node_modules/@snap/camera-kit/dist/events/scan.js
 
 
 const scan_scan = (seedState) => (source, eventTypes, accumulator) => {
@@ -28755,7 +28791,7 @@ const scan_scan = (seedState) => (source, eventTypes, accumulator) => {
     return sink;
 };
 //# sourceMappingURL=scan.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportHttpMetrics.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportHttpMetrics.js
 
 
 
@@ -28869,7 +28905,7 @@ const reportHttpMetrics = Injectable("reportHttpMetrics", [metricsClientFactory.
     });
 });
 //# sourceMappingURL=reportHttpMetrics.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportLegalState.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportLegalState.js
 
 
 
@@ -28899,7 +28935,7 @@ const reportLegalState = Injectable("reportLegalState", [legalStateFactory.token
     });
 });
 //# sourceMappingURL=reportLegalState.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportLensAndAssetDownload.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportLensAndAssetDownload.js
 
 
 
@@ -28991,7 +29027,7 @@ const reportLensAndAssetDownload = Injectable("reportLensAndAssetDownload", [met
     });
 });
 //# sourceMappingURL=reportLensAndAssetDownload.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportLensValidationFailed.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportLensValidationFailed.js
 
 
 
@@ -29013,7 +29049,7 @@ const reportLensValidationFailed = Injectable("reportLensValidationFailed", [len
     });
 });
 //# sourceMappingURL=reportLensValidationFailed.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/observable/combineLatest.js
+;// ./node_modules/rxjs/dist/esm5/internal/observable/combineLatest.js
 
 
 
@@ -29084,13 +29120,13 @@ function maybeSchedule(scheduler, execute, subscription) {
     }
 }
 //# sourceMappingURL=combineLatest.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/argsOrArgArray.js
+;// ./node_modules/rxjs/dist/esm5/internal/util/argsOrArgArray.js
 var argsOrArgArray_isArray = Array.isArray;
 function argsOrArgArray_argsOrArgArray(args) {
     return args.length === 1 && argsOrArgArray_isArray(args[0]) ? args[0] : args;
 }
 //# sourceMappingURL=argsOrArgArray.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/combineLatest.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/combineLatest.js
 
 
 
@@ -29111,7 +29147,7 @@ function combineLatest_combineLatest() {
         });
 }
 //# sourceMappingURL=combineLatest.js.map
-;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/combineLatestWith.js
+;// ./node_modules/rxjs/dist/esm5/internal/operators/combineLatestWith.js
 
 
 function combineLatestWith() {
@@ -29122,7 +29158,7 @@ function combineLatestWith() {
     return combineLatest_combineLatest.apply(void 0, __spreadArray([], __read(otherSources)));
 }
 //# sourceMappingURL=combineLatestWith.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/common/date.js
+;// ./node_modules/@snap/camera-kit/dist/common/date.js
 const DEFAULT_TIMEZONE = "America/Los_Angeles";
 const dayFormatter = new Intl.DateTimeFormat("en-US", {
     timeZone: DEFAULT_TIMEZONE,
@@ -29136,7 +29172,7 @@ const monthFormatter = new Intl.DateTimeFormat("en-US", {
     month: "numeric",
 });
 //# sourceMappingURL=date.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportLensView.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportLensView.js
 
 
 
@@ -29239,7 +29275,7 @@ const reportLensView = Injectable("reportLensView", [
     });
 }));
 //# sourceMappingURL=reportLensView.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportLensWait.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportLensWait.js
 
 
 
@@ -29275,7 +29311,7 @@ const reportLensWait = Injectable("reportLensWait", [lensStateFactory.token, met
     });
 });
 //# sourceMappingURL=reportLensWait.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportUserSession.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportUserSession.js
 
 
 
@@ -29337,7 +29373,7 @@ const reportUserSession = Injectable("reportUserSession", [metricsEventTargetFac
     metricsEventTarget.dispatchEvent(new TypedCustomEvent("session", session));
 }));
 //# sourceMappingURL=reportUserSession.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportPlatformCapabilities.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/reporters/reportPlatformCapabilities.js
 
 
 
@@ -29351,7 +29387,7 @@ const reportPlatformCapabilities = Injectable("reportPlatformCapabilities", [met
     metrics.setOperationalMetrics(Count.count(joinMetricNames(["platform", "webxr"]), webxr.supported ? 1 : 0));
 }));
 //# sourceMappingURL=reportPlatformCapabilities.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/reporters/reporters.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/reporters/reporters.js
 
 
 
@@ -29376,10 +29412,10 @@ const reportSessionScopedMetrics = new PartialContainer_PartialContainer({})
     .provides(reportSessionException)
     .provides(reportLensValidationFailed);
 //# sourceMappingURL=reporters.js.map
-;// CONCATENATED MODULE: ./node_modules/browser-fs-access/dist/index.modern.js
+;// ./node_modules/browser-fs-access/dist/index.modern.js
 const e=(()=>{if("undefined"==typeof self)return!1;if("top"in self&&self!==top)try{top.window.document._=0}catch(e){return!1}return"showOpenFilePicker"in self})(),t=e?Promise.resolve().then(function(){return l}):Promise.resolve().then(function(){return v});async function n(...e){return(await t).default(...e)}const r=e?Promise.resolve().then(function(){return y}):Promise.resolve().then(function(){return b});async function i(...e){return(await r).default(...e)}const a=e?Promise.resolve().then(function(){return m}):Promise.resolve().then(function(){return k});async function o(...e){return(await a).default(...e)}const s=async e=>{const t=await e.getFile();return t.handle=e,t};var c=async(e=[{}])=>{Array.isArray(e)||(e=[e]);const t=[];e.forEach((e,n)=>{t[n]={description:e.description||"Files",accept:{}},e.mimeTypes?e.mimeTypes.map(r=>{t[n].accept[r]=e.extensions||[]}):t[n].accept["*/*"]=e.extensions||[]});const n=await window.showOpenFilePicker({id:e[0].id,startIn:e[0].startIn,types:t,multiple:e[0].multiple||!1,excludeAcceptAllOption:e[0].excludeAcceptAllOption||!1}),r=await Promise.all(n.map(s));return e[0].multiple?r:r[0]},l={__proto__:null,default:c};function u(e){function t(e){if(Object(e)!==e)return Promise.reject(new TypeError(e+" is not an object."));var t=e.done;return Promise.resolve(e.value).then(function(e){return{value:e,done:t}})}return u=function(e){this.s=e,this.n=e.next},u.prototype={s:null,n:null,next:function(){return t(this.n.apply(this.s,arguments))},return:function(e){var n=this.s.return;return void 0===n?Promise.resolve({value:e,done:!0}):t(n.apply(this.s,arguments))},throw:function(e){var n=this.s.return;return void 0===n?Promise.reject(e):t(n.apply(this.s,arguments))}},new u(e)}const p=async(e,t,n=e.name,r)=>{const i=[],a=[];var o,s=!1,c=!1;try{for(var l,d=function(e){var t,n,r,i=2;for("undefined"!=typeof Symbol&&(n=Symbol.asyncIterator,r=Symbol.iterator);i--;){if(n&&null!=(t=e[n]))return t.call(e);if(r&&null!=(t=e[r]))return new u(t.call(e));n="@@asyncIterator",r="@@iterator"}throw new TypeError("Object is not async iterable")}(e.values());s=!(l=await d.next()).done;s=!1){const o=l.value,s=`${n}/${o.name}`;"file"===o.kind?a.push(o.getFile().then(t=>(t.directoryHandle=e,t.handle=o,Object.defineProperty(t,"webkitRelativePath",{configurable:!0,enumerable:!0,get:()=>s})))):"directory"!==o.kind||!t||r&&r(o)||i.push(p(o,t,s,r))}}catch(e){c=!0,o=e}finally{try{s&&null!=d.return&&await d.return()}finally{if(c)throw o}}return[...(await Promise.all(i)).flat(),...await Promise.all(a)]};var d=async(e={})=>{e.recursive=e.recursive||!1,e.mode=e.mode||"read";const t=await window.showDirectoryPicker({id:e.id,startIn:e.startIn,mode:e.mode});return(await(await t.values()).next()).done?[t]:p(t,e.recursive,void 0,e.skipDirectory)},y={__proto__:null,default:d},f=async(e,t=[{}],n=null,r=!1,i=null)=>{Array.isArray(t)||(t=[t]),t[0].fileName=t[0].fileName||"Untitled";const a=[];let o=null;if(e instanceof Blob&&e.type?o=e.type:e.headers&&e.headers.get("content-type")&&(o=e.headers.get("content-type")),t.forEach((e,t)=>{a[t]={description:e.description||"Files",accept:{}},e.mimeTypes?(0===t&&o&&e.mimeTypes.push(o),e.mimeTypes.map(n=>{a[t].accept[n]=e.extensions||[]})):o?a[t].accept[o]=e.extensions||[]:a[t].accept["*/*"]=e.extensions||[]}),n)try{await n.getFile()}catch(e){if(n=null,r)throw e}const s=n||await window.showSaveFilePicker({suggestedName:t[0].fileName,id:t[0].id,startIn:t[0].startIn,types:a,excludeAcceptAllOption:t[0].excludeAcceptAllOption||!1});!n&&i&&i(s);const c=await s.createWritable();if("stream"in e){const t=e.stream();return await t.pipeTo(c),s}return"body"in e?(await e.body.pipeTo(c),s):(await c.write(await e),await c.close(),s)},m={__proto__:null,default:f},w=async(e=[{}])=>(Array.isArray(e)||(e=[e]),new Promise((t,n)=>{const r=document.createElement("input");r.type="file";const i=[...e.map(e=>e.mimeTypes||[]),...e.map(e=>e.extensions||[])].join();r.multiple=e[0].multiple||!1,r.accept=i||"",r.style.display="none",document.body.append(r);const a=e=>{"function"==typeof o&&o(),t(e)},o=e[0].legacySetup&&e[0].legacySetup(a,()=>o(n),r),s=()=>{window.removeEventListener("focus",s),r.remove()};r.addEventListener("click",()=>{window.addEventListener("focus",s)}),r.addEventListener("change",()=>{window.removeEventListener("focus",s),r.remove(),a(r.multiple?Array.from(r.files):r.files[0])}),"showPicker"in HTMLInputElement.prototype?r.showPicker():r.click()})),v={__proto__:null,default:w},h=async(e=[{}])=>(Array.isArray(e)||(e=[e]),e[0].recursive=e[0].recursive||!1,new Promise((t,n)=>{const r=document.createElement("input");r.type="file",r.webkitdirectory=!0;const i=e=>{"function"==typeof a&&a(),t(e)},a=e[0].legacySetup&&e[0].legacySetup(i,()=>a(n),r);r.addEventListener("change",()=>{let t=Array.from(r.files);e[0].recursive?e[0].recursive&&e[0].skipDirectory&&(t=t.filter(t=>t.webkitRelativePath.split("/").every(t=>!e[0].skipDirectory({name:t,kind:"directory"})))):t=t.filter(e=>2===e.webkitRelativePath.split("/").length),i(t)}),"showPicker"in HTMLInputElement.prototype?r.showPicker():r.click()})),b={__proto__:null,default:h},P=async(e,t={})=>{Array.isArray(t)&&(t=t[0]);const n=document.createElement("a");let r=e;"body"in e&&(r=await async function(e,t){const n=e.getReader(),r=new ReadableStream({start:e=>async function t(){return n.read().then(({done:n,value:r})=>{if(!n)return e.enqueue(r),t();e.close()})}()}),i=new Response(r),a=await i.blob();return n.releaseLock(),new Blob([a],{type:t})}(e.body,e.headers.get("content-type"))),n.download=t.fileName||"Untitled",n.href=URL.createObjectURL(await r);const i=()=>{"function"==typeof a&&a()},a=t.legacySetup&&t.legacySetup(i,()=>a(),n);return n.addEventListener("click",()=>{setTimeout(()=>URL.revokeObjectURL(n.href),3e4),i()}),n.click(),null},k={__proto__:null,default:P};
 
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens-client-interface/exif.js
+;// ./node_modules/@snap/camera-kit/dist/lens-client-interface/exif.js
 const JPEG_ID = 0xffd8;
 const APP1_MARKER = 0xffe1;
 const EXIF_ID = 0x45786966;
@@ -29431,7 +29467,7 @@ function extractJpegOrientationTag(data) {
     return undefined;
 }
 //# sourceMappingURL=exif.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens-client-interface/imagePicker.js
+;// ./node_modules/@snap/camera-kit/dist/lens-client-interface/imagePicker.js
 
 
 
@@ -29548,11 +29584,11 @@ function pickClientImage(clientInterfaceData, lensCore, filePicker) {
     });
 }
 //# sourceMappingURL=imagePicker.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens-client-interface/filePicker.js
+;// ./node_modules/@snap/camera-kit/dist/lens-client-interface/filePicker.js
 
 const filePickerFactory = Injectable("filePicker", () => (options, openDefaultPicker) => openDefaultPicker(options));
 //# sourceMappingURL=filePicker.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens-client-interface/lensClientInterface.js
+;// ./node_modules/@snap/camera-kit/dist/lens-client-interface/lensClientInterface.js
 
 
 
@@ -29576,7 +29612,7 @@ const registerLensClientInterfaceHandler = Injectable("registerLensClientInterfa
     }));
 });
 //# sourceMappingURL=lensClientInterface.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/remote-configuration/preloadConfiguration.js
+;// ./node_modules/@snap/camera-kit/dist/remote-configuration/preloadConfiguration.js
 
 
 
@@ -29597,7 +29633,7 @@ const setPreloadedConfiguration = Injectable("setPreloadedConfiguration", [lensC
     });
 });
 //# sourceMappingURL=preloadConfiguration.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/geo/geoDataProvider.js
+;// ./node_modules/@snap/camera-kit/dist/geo/geoDataProvider.js
 
 
 function isGeoData(value) {
@@ -29623,7 +29659,7 @@ const geoDataProviderFactory = Injectable("geoDataProvider", () => {
     return () => undefined;
 });
 //# sourceMappingURL=geoDataProvider.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/geo/registerGeoDataProvider.js
+;// ./node_modules/@snap/camera-kit/dist/geo/registerGeoDataProvider.js
 
 
 
@@ -29646,7 +29682,8 @@ const registerGeoDataProvider = Injectable("registerGeoDataProvider", [lensCoreF
     });
 });
 //# sourceMappingURL=registerGeoDataProvider.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/CameraKit.js
+;// ./node_modules/@snap/camera-kit/dist/CameraKit.js
+
 
 
 
@@ -29734,6 +29771,7 @@ let CameraKit = (() => {
                         .provides(sessionStateFactory)
                         .provides(lensStateFactory)
                         .provides(lensKeyboardFactory)
+                        .provides(frameEventsFactory)
                         .provides(cameraKitSessionFactory)
                         .run(registerLensAssetsProvider)
                         .run(registerLensClientInterfaceHandler)
@@ -29772,7 +29810,7 @@ const cameraKitFactory = Injectable("CameraKit", [
     CONTAINER,
 ], (lensRepository, metrics, lensCore, pageVisibility, remoteConfiguration, container) => new CameraKit(lensRepository, lensCore, pageVisibility, container, remoteConfiguration, metrics));
 //# sourceMappingURL=CameraKit.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/platform/assertPlatformSupported.js
+;// ./node_modules/@snap/camera-kit/dist/platform/assertPlatformSupported.js
 
 
 function assertPlatformSupported() {
@@ -29785,12 +29823,12 @@ function assertPlatformSupported() {
     });
 }
 //# sourceMappingURL=assertPlatformSupported.js.map
-;// CONCATENATED MODULE: ./node_modules/uuid/dist/esm-browser/native.js
+;// ./node_modules/uuid/dist/esm-browser/native.js
 var randomUUID = typeof crypto !== 'undefined' && crypto.randomUUID && crypto.randomUUID.bind(crypto);
 /* harmony default export */ const esm_browser_native = ({
   randomUUID
 });
-;// CONCATENATED MODULE: ./node_modules/uuid/dist/esm-browser/rng.js
+;// ./node_modules/uuid/dist/esm-browser/rng.js
 // Unique ID creation requires a high quality random # generator. In the browser we therefore
 // require the crypto API and do not support built-in fallback to lower quality random number
 // generators (like Math.random()).
@@ -29808,7 +29846,7 @@ function rng() {
   }
   return getRandomValues(rnds8);
 }
-;// CONCATENATED MODULE: ./node_modules/uuid/dist/esm-browser/stringify.js
+;// ./node_modules/uuid/dist/esm-browser/stringify.js
 
 
 /**
@@ -29840,7 +29878,7 @@ function stringify(arr, offset = 0) {
   return uuid;
 }
 /* harmony default export */ const esm_browser_stringify = ((/* unused pure expression or super */ null && (stringify)));
-;// CONCATENATED MODULE: ./node_modules/uuid/dist/esm-browser/v4.js
+;// ./node_modules/uuid/dist/esm-browser/v4.js
 
 
 
@@ -29866,7 +29904,7 @@ function v4(options, buf, offset) {
   return unsafeStringify(rnds);
 }
 /* harmony default export */ const esm_browser_v4 = (v4);
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/metrics/businessEventsReporter.js
+;// ./node_modules/@snap/camera-kit/dist/metrics/businessEventsReporter.js
 
 
 
@@ -30023,7 +30061,7 @@ const businessEventsReporterFactory = Injectable("businessEventsReporter", [
     }, appVendorAndPartnerUuid);
 });
 //# sourceMappingURL=businessEventsReporter.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/logger/registerLogEntriesSubscriber.js
+;// ./node_modules/@snap/camera-kit/dist/logger/registerLogEntriesSubscriber.js
 
 
 
@@ -30051,14 +30089,14 @@ const registerLogEntriesSubscriber = Injectable("registerLogEntriesSubscriber", 
     });
 });
 //# sourceMappingURL=registerLogEntriesSubscriber.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/clients/lensesClient.js
+;// ./node_modules/@snap/camera-kit/dist/clients/lensesClient.js
 
 
 
 
 const lensesClientFactory = Injectable("lensesClient", [grpcHandlerFactory.token], (grpcHandler) => createTsProtoClient(LensesDefinition, grpcHandler));
 //# sourceMappingURL=lensesClient.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/lens/cameraKitLensSource.js
+;// ./node_modules/@snap/camera-kit/dist/lens/cameraKitLensSource.js
 
 
 
@@ -30152,7 +30190,7 @@ const cameraKitLensSourceFactory = Injectable(lensSourcesFactory.token, [lensSou
     },
 ]);
 //# sourceMappingURL=cameraKitLensSource.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/bootstrapCameraKit.js
+;// ./node_modules/@snap/camera-kit/dist/bootstrapCameraKit.js
 
 
 
@@ -30276,7 +30314,7 @@ function createExtension() {
     return new PartialContainer({});
 }
 //# sourceMappingURL=bootstrapCameraKit.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/extensions/extensionRequestContext.js
+;// ./node_modules/@snap/camera-kit/dist/extensions/extensionRequestContext.js
 
 
 
@@ -30289,7 +30327,7 @@ const getExtensionRequestContext = memoize_memoize(function getExtensionRequestC
 });
 const extensionRequestContext = getExtensionRequestContext();
 //# sourceMappingURL=extensionRequestContext.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/media-sources/FunctionSource.js
+;// ./node_modules/@snap/camera-kit/dist/media-sources/FunctionSource.js
 
 
 const getYUVImageData = (canvas, lensCore) => __awaiter(void 0, void 0, void 0, function* () {
@@ -30395,7 +30433,7 @@ const createFunctionSource = (sourceFunction, options = {}) => {
     return new CameraKitSource({ useManualFrameProcessing: true }, subscriber, options);
 };
 //# sourceMappingURL=FunctionSource.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/media-sources/ImageSource.js
+;// ./node_modules/@snap/camera-kit/dist/media-sources/ImageSource.js
 
 function createImageSource(image, options = {}) {
     return new CameraKitSource({
@@ -30403,7 +30441,7 @@ function createImageSource(image, options = {}) {
     }, {}, options);
 }
 //# sourceMappingURL=ImageSource.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/dist/index.js
+;// ./node_modules/@snap/camera-kit/dist/index.js
 
 
 
@@ -30440,7 +30478,7 @@ function createImageSource(image, options = {}) {
 
 
 //# sourceMappingURL=index.js.map
-;// CONCATENATED MODULE: ./src/main.js
+;// ./src/main.js
 
 
 //FLIP CAMERA EXAMPLE
